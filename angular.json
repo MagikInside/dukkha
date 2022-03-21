@@ -104,6 +104,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "dukkha:build:production",
+            "firebaseProject": "dukkha-e7d89",
+            "firebaseHostingSite": "dukkha-e7d89"
+          }
         }
       }
     }

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "dukkha-e7d89"
+  },
+  "targets": {
+    "dukkha-e7d89": {
+      "hosting": {
+        "dukkha": [
+          "dukkha-e7d89"
+        ]
+      }
+    }
+  }
+}

@@ -1,18 +1,14 @@
-<div id="select-player">
-  <section class="player player1">
-    <h2>Fire</h2>
-    <mat-icon>local_fire_department</mat-icon>
+<div class="login">
+  <section *ngFor="let element of elements" class="{{element.name}} background">
+    <h2> {{element.name}}</h2>
+    <mat-icon>{{element.icon}}</mat-icon>
   </section>
-  <section class="player player2">
-    <h2>Water</h2>
-    <mat-icon>water_drop</mat-icon>
-  </section>
-  <section class="player player3">
-    <h2>Earth</h2>
-    <mat-icon>grass</mat-icon>
-  </section>
-  <section class="player player4">
-    <h2>Air</h2>
-    <mat-icon>air</mat-icon>
+</div>
+<div class="login-overlay" (click)="selectElement()">
+  <section class="credentials">
+    <h3>Who are you?</h3>
+    <div class="element-selection">
+      <mat-icon  *ngFor="let element of elements" [ngClass]="{'active': element === selectedElement}" (click)="selectElement(element)" class="{{element.name}}">{{element.icon}}</mat-icon>
+    </div>
   </section>
 </div>

@@ -1,39 +1,87 @@
-#select-player
-  height: 100%
+.login
   display: grid
-  grid-template-rows: repeat(2, 1fr)
   grid-template-columns: repeat(2, 1fr)
-  .player
-    flex: 50%
-    display: flex
-    justify-content: center
+  grid-template-rows: repeat(2, 1fr)
+  height: 100%
+  section.background
     align-items: center
+    cursor: pointer
+    display: flex
+    flex: 50%
+    justify-content: center
+    opacity: 1
     .mat-icon
-      position: absolute
-      height: 300px
-      width: 300px
-      font-size: 300px
       color: white
+      font-size: 300px
+      height: 300px
       opacity: 0.2
-      z-index: 1
+      position: absolute
       user-select: none
+      width: 300px
+      z-index: 1
     h2
       text-transform: uppercase
       letter-spacing: 1.57px
-    &.player1
+    &.fire
       background-color: #A31621
-    &.player2
+    &.water
       background-color: #2B4162
-    &.player3
+    &.earth
       background-color: #558564
-    &.player4
+    &.air
       background-color: #DFE0E2
       .mat-icon
         color: gray
     button
       z-index: 2
 
-@media only screen and (max-width: 800px)
 
-  #select-player
+.login-overlay
+  align-items: center
+  display: flex
+  height: 100%
+  justify-content: center
+  left: 0
+  position: absolute
+  top: 0
+  width: 100%
+  z-index: 1
+  > section.credentials
+    background-color: #ffffff67
+    padding: 8px
+    width: 300px
+    .element-selection
+      display: flex
+      justify-content: space-around
+      .mat-icon
+        font-size: 30px
+        height: 30px
+        opacity: .6
+        width: 30px
+        &:hover
+          opacity: .8
+          cursor: pointer
+        &.active
+          opacity: 1
+        &.fire
+          color: #A31621
+        &.water
+          color: #2B4162
+        &.earth
+          color: #558564
+        &.air
+          color: #8d8d8d
+
+    h3
+      text-transform: uppercase
+      letter-spacing: 1.57px
+      text-align: center
+
+@media only screen and (max-width: 1024px)
+  .login
+    display: flex
     flex-direction: column
+    section .mat-icon
+      font-size: 160px
+      height: 160px
+      width: 160px
