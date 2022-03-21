@@ -10,5 +10,6 @@
     <div class="element-selection">
       <mat-icon  *ngFor="let element of elements" [ngClass]="{'active': element === selectedElement}" (click)="selectElement(element)" class="{{element.name}}">{{element.icon}}</mat-icon>
     </div>
+    <button mat-raised-button (click)="login()">Let me in</button>
   </section>
 </div>
