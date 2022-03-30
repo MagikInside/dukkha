@@ -1,7 +1,10 @@
 import { Component, OnInit, Optional } from '@angular/core';
 import { ELEMENTS } from '../models/elements';
 import { Element } from '../models/element.model'; 
-import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from '@firebase/app-compat';
+
+
 
 @Component({
   selector: 'app-login',
@@ -14,7 +17,7 @@ export class LoginComponent implements OnInit {
   selectedElement: Element | null = null;
   readonly elements = ELEMENTS;
 
-  constructor(@Optional() private auth: Auth) { }
+  constructor(public readonly auth: AngularFireAuth,) { }
 
   ngOnInit(): void {
   }
@@ -26,7 +29,7 @@ export class LoginComponent implements OnInit {
 }
 
 async login() {
-  return await signInWithPopup(this.auth, new GoogleAuthProvider());
+  await this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
 }
 
 }
