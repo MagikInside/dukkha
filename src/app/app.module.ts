@@ -11,11 +11,13 @@ import { environment } from '../environments/environment';
 import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard'
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { IntroComponent } from './intro/intro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    IntroComponent
   ],
   imports: [
     BrowserModule,
