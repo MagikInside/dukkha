@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { UserService } from '../services/user.service';
+import firebase from 'firebase/compat/app';
 
 @Component({
   selector: 'app-intro',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IntroComponent implements OnInit {
 
-  constructor() { }
+  user$: Observable<firebase.User | null>;
+
+  constructor(private userService: UserService) { 
+    this.user$ = userService.user$;
+  }
 
   ngOnInit(): void {
   }
