@@ -1,0 +1,27 @@
+<div class="selection">
+  <h2>Heroes</h2>
+  <mat-card class="displayed-character mat-elevation-z3">
+    <img alt="character image" src="assets/imgs/characters/{{character?.img}}">
+    <section class="details">
+      <span><strong>name:</strong> {{character?.name}}</span>
+      <span><strong>attack:</strong> {{character?.attack}}</span>
+      <span><strong>defense:</strong> {{character?.defense}}</span>
+      <span><strong>aliance:</strong> {{character?.alliance}}</span>
+      <span><strong>points:</strong> {{character?.points}}</span>
+      <button mat-raised-button (click)="select()">Select</button>
+    </section>
+  </mat-card>
+  
+  <section class="selected-points">
+    <p>{{selectedPoints}}</p>
+    <label>Points</label>
+  </section>
+  <section class="selected-characters">
+  <h3>Selected</h3>
+  <div class="character-list">
+    <div class="character" [ngClass]="{'active': character.active}" *ngFor="let character of selectedCharacters">
+      <img width="60" height="60" alt="character-img" src="assets/imgs/characters/{{character.img}}">
+    </div>
+  </div>
+</section>
+</div>

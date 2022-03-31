@@ -1,0 +1,20 @@
+<div class="phase-display">
+<h2>Monsters</h2>
+<h1>Phase 1</h1>
+
+<ng-container *ngIf="phases">
+    <section class="selected-points">
+        <p>{{phases[0].maxPoints}}</p>
+        <label>Points</label>
+      </section>
+<div *ngFor="let monster of phases[0]?.monsters">
+    <section class="monster">
+    <p class="number">{{monster.number}} X </p>
+<div>
+    <p>{{monster.type}}</p>
+    <img alt="monster image" src="assets/imgs/monsters/{{monster.type}}.png">
+</div>
+    </section>
+</div>
+</ng-container>
+</div>

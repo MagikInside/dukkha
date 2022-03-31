@@ -1,0 +1,9 @@
+<div id="select-characters">
+  <ng-container *ngIf="characters$ | async as characters">
+  <app-characters-display (displayCharacter)="onDisplayCharacter($event)" class="display" [characters]="characters"></app-characters-display>
+  <app-selection-display (selectCharacter)="onSelectCharacter()" *ngIf="displayedCharacter" class="player" [character]="displayedCharacter" [selectedCharacters]="selectedCharacters" [selectedPoints]="selectedPoints"></app-selection-display>
+</ng-container>
+  <section class="rival" *ngIf="phases$ | async as phases">
+    <app-phase-display [phases]="phases"></app-phase-display>
+  </section>
+</div>
