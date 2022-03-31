@@ -1,5 +1,5 @@
 <div class="intro">
-    <div class="container">
+    <section class="prolog" *ngIf="isFirst">
         <h1>Here your adventure begins, {{(user$ | async)?.displayName}}</h1>
         <div class="wake-up">
             <p><strong>Armageddon</strong> is here.</p>
@@ -8,10 +8,23 @@
             <p>and... <strong>Wake Up</strong>.</p>
         </div>
         <img alt="monsters" src="/assets/imgs/monsters.png">
-        <p>In a distant land of powerful magic and dangerous monsters, various tribes and factions struggled to survive and prosper. Among them a select few discovered the ability to bend reality to their will. They were known as Mages, grouped into four powerful castes, or traditions.</p>
+        <p>In a distant land of powerful magic and dangerous monsters, various tribes and factions struggled to survive and prosper. Among them, a select few discovered the ability to bend reality to their will. They were known as Mages, grouped into four powerful castes, or traditions.</p>
         <p>A few days ago, in your small town there was a great commotion, when you, {{(user$ | async)?.displayName}}, awakened to the <strong>Magic</strong>. But the celebrations ended quickly and uneasily. The surrounding dark creatures could also notice the disruption in the spheres and the spike in quintessence concentration.</p>
         <p>Everyone in the village was in danger.</p>
-        <button mat-raised-button (click)="start()">Let's go</button>
+        <button mat-raised-button (click)="next()">start</button>
+    </section>
+    <section class="last-night" *ngIf="!isFirst">
+        <h2>The last night of Phandelver</h2>
+        <p>The creatures arrived at the village at dusk, when the last rays of the sun were still hiding. The guards fended off the first attacks on the palisade, but soon realized they couldn't hold out for long, as a huge horde was beginning to mass outside at the edge of the forest.</p>
 
-    </div>
+        <p>Five factions dominated the city:</p>
+
+        <section class="banners">
+            <div *ngFor="let faction of factions">
+                    <img alt="banner" src="/assets/imgs/banners/{{faction.img}}">
+                <p>{{faction.name}}</p>
+            </div>
+            
+        </section>
+    </section>
 </div>
