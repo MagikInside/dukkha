@@ -1,0 +1,53 @@
+<section class="last-night">
+    <h2>The last night of Phandelver</h2>
+    <p>The creatures arrived at the village at dusk, when the last rays of the sun were still hiding. The guards fended off the first attacks on the palisade, but soon realized they couldn't hold out for long, as a huge horde was beginning to mass outside at the edge of the forest.</p>
+    
+    
+    <p><strong>Phandel</strong>, where you lived, was a small mining town, with about three thousand souls, located on a plain near a hill and a forest, protected by a palisade and defended by the not very extensive or reputable guard, known as the Red Brands, or red capes.</p>
+
+    <img alt="Phandel" src="/assets/imgs/phandel.jpg">
+
+    <p>You had never been in the presence of <strong>Harbin Wester</strong>, the former manager of the Wester bank, now the mayor of the city, but that night, accompanied by a servant and guarded by two Red Brands, he had appeared on the threshold of the door of your humble house: The guard was outmatched by the creatures, and the different factions did not agree in the decisions to be made. The mayor, trusting your new connection, had decided to leave the most important decisions up to you.</p>
+    
+    <p>You had tried to connect with the mystical energies, to seek answers in the tangled web of destiny, looking for answers, how</p>
+        <mat-button-toggle-group name="strategy" aria-label="Strategy" [(ngModel)]="focus">
+            <mat-button-toggle value="meditating">Meditating</mat-button-toggle>
+            <mat-button-toggle value="praying">Praying</mat-button-toggle>
+            <mat-button-toggle value="praying">Reading</mat-button-toggle>
+            <mat-button-toggle value="praying">Sacrifice</mat-button-toggle>
+        </mat-button-toggle-group>
+
+
+    <p>Five factions dominated the continent, and had presence in the city:</p>
+    
+    <section class="factions">
+        <div class="faction" *ngFor="let faction of factions" (click)="selectFaction(faction)" [ngClass]="{'active': faction.active}">
+            <img alt="banner" src="/assets/imgs/banners/{{faction.img}}">
+            <p>{{faction.name}}</p>
+        </div>            
+    </section>
+    <section class="description desktop">
+        <p>{{selectedFaction.description}}</p>
+    </section>
+    <br><br>
+    <p>Should efforts be concentrated on defending or evacuating the city?</p>
+    <mat-button-toggle-group name="strategy" aria-label="Strategy" [(ngModel)]="strategy">
+        <mat-button-toggle value="defense">Defend</mat-button-toggle>
+        <mat-button-toggle value="evacuation">Evacuate</mat-button-toggle>
+    </mat-button-toggle-group>
+    <br><br>
+    <div *ngIf="strategy">
+        <p>Which faction should lead the {{strategy}}?</p>
+        <mat-button-toggle-group name="factionLead" aria-label="Faction lead" [(ngModel)]="factionLead">
+            <mat-button-toggle *ngFor="let faction of factions" value="{{faction.name}}">{{faction.name}}</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+    <br><br>
+    <div *ngIf="factionLead">
+        <p>Which faction should lead the {{strategy}}?</p>
+        <mat-button-toggle-group name="factionLead" aria-label="Faction lead">
+            <mat-button-toggle *ngFor="let faction of factions" value="{{faction.name}}" [disabled]="faction.name === factionLead">{{faction.name}}</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+</section>
+

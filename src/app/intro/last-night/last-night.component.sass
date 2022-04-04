@@ -1,0 +1,67 @@
+.last-night
+    h2
+        font-size: 34px
+        letter-spacing: 1.57px
+        line-height: 42px
+        margin-bottom: 42px
+        text-align: center
+        text-transform: uppercase
+    img
+        width: 100%
+        height: auto
+    .factions
+        gap: 40px
+        display: flex
+        width: 100%
+        .faction
+            align-items: center
+            display: flex
+            flex-direction: column
+            flex: 1 1 0
+            opacity: 0.4
+            img
+                width: 100%
+                height: auto
+                margin-bottom: 24px
+            p
+                text-align: center
+                font-weight: bold
+                text-transform: uppercase
+            &.active
+                opacity: 1
+            &:hover
+                cursor: pointer
+                opacity: 1
+    .description
+        margin-top: 32px
+        padding: 20px
+        background-color: white
+        border: solid 1px #303030
+        &.desktop
+            display: block
+        &.mobile
+            display: none
+    mat-button-toggle-group
+        flex-wrap: wrap
+        .mat-button-toggle
+            margin-bottom: 12px
+        .mat-button-toggle-checked
+            background-color: #2B4162
+            color: white
+
+@media (max-width: 1024px)
+    .last-night
+        .factions
+            overflow-x: scroll
+            scroll-snap-type: x mandatory
+            gap: 10px
+            .faction
+                flex: 1 0 100%
+                scroll-snap-align: center
+                img
+                    width: 50%
+                .description
+                    width: 100%
+                    &.desktop
+                        display: none
+                    
