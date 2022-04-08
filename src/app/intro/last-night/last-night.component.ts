@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Option } from '../../models/option.model';
 
 @Component({
   selector: 'app-last-night',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./last-night.component.sass']
 })
 export class LastNightComponent implements OnInit {
+
+  @Input() step = 0;
 
   factions = [
     {name: "Lord's alliance", img: 'alliance.webp', active: true, description: "The Lords’ Alliance is a coalition of rulers from cities and towns across all Dukkha, who collectively agree that some solidarity and collaboration is needed to keep monsters and evil organizations at bay. The different rulers, nobles and lords in the Alliance works for the fate and fortune of all, but for his or her own settlement above all others. The alliance counts among its ranks people with vast resources and political influence, also supported by a powerful army, and in general is well-rounded in all aspects. On the other hand, its organization and hierarchy is complex, dealing with different interests and priorities for the different lords."},
@@ -15,9 +18,18 @@ export class LastNightComponent implements OnInit {
     {name: "Zhentarim", img: 'zhentarim.webp', active: false, description: "The Zhentarim seeks to become omnipresent and inescapable, more wealthy and powerful, and most importantly, untouchable. The public face of the organization appears much more benign, offering the best mercenaries money can buy, and merchants capable of access to the finests goods. When a merchant needs an escort for his caravan, when a noble needs bodyguards to protect her holdings, or when a city needs trained soldiers to defend its honor, the Zhentarim provides the best-trained fighting men and women money can buy. However, the cost of doing business with the Black Network can be high. The Black Network has almost unlimited resources and military potential, as well as members who are experts in infiltration and trafficking in dark secrets. On the other hand, despite their facade, they have a dark reputation and few in Dukkha are openly willing to do business with or trust them."},
   ]
   selectedFaction = this.factions[0];
-  focus = '';
+  focusOptions: Option[] = [
+    {name: 'Meditation' , description: 'Close your eyes. Concentrate. Search in your inner thougts.', longDesc: 'You decide to seek guidance in meditation. You burn some incense, sit on the floor, close your eyes, and focus your will on the questions that lie in wait for you.'},
+    {name: 'Praying' , description: 'Ask the Gods for guide, for help.', longDesc: 'You draw on divine inspiration. You light some candles around you and kneel, beseeching the gods to enlighten you with their wisdom.'},
+    {name: 'Reading', description: 'Search in old arcane books for answers.', longDesc: 'You search through the dusty tomes of arcane knowledge that had belonged to another Mage years ago, trying to decipher answers among runes, glyphs and inscriptions, in lenghty texts and intelligible annotations.'},
+    {name: 'Sacrifice', description: 'Any knowledge demands a prize. In blood .', longDesc: "You don't have time for contemplation, so with a heavy heart, you claim your old neighbor's poor cat. You spill his blood with an accurate cut, and with it you draw a pentacle on the ground, while demanding answers from the dark beings in the shadows." }, 
+  ];
+  selectedFocus: Option | null = null;
+
+  focus: number | null = null;
   strategy = '';
   factionLead = '';
+
 
   constructor() { }
 

@@ -23,6 +23,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { FormsModule } from '@angular/forms';
 import { PrologComponent } from './intro/prolog/prolog.component';
 import { LastNightComponent } from './intro/last-night/last-night.component';
+import { DescriptionComponent } from './shared/description/description.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { LastNightComponent } from './intro/last-night/last-night.component';
     SelectionDisplayComponent,
     PhaseDisplayComponent,
     PrologComponent,
-    LastNightComponent
+    LastNightComponent,
+    DescriptionComponent
   ],
   imports: [
     BrowserModule,

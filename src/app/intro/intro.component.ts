@@ -12,9 +12,7 @@ import { Router } from '@angular/router';
 export class IntroComponent implements OnInit {
   
   user$: Observable<firebase.User | null>;
-  isFirst = true;
-
-  
+  step = 0;    
   
   constructor(private userService: UserService, private router: Router) { 
     this.user$ = userService.user$;
@@ -24,10 +22,12 @@ export class IntroComponent implements OnInit {
   }
   
   next() {
-    this.isFirst =false;
-  }
-  start() {
-    this.router.navigate(['selection']);
+    if(this.step === 3) {
+      this.router.navigate(['selection']);
+    } else {
+    this.step++;
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    }
   }
   
   
