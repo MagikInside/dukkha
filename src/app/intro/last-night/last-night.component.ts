@@ -26,10 +26,11 @@ export class LastNightComponent implements OnInit {
   ];
   selectedFocus: Option | null = null;
 
-  focus: number | null = null;
+  focus = '';
   strategy = '';
   factionLead = '';
-
+  vanguardFaction = '';
+   fallenDistrict = '';
 
   constructor() { }
 
@@ -40,6 +41,10 @@ export class LastNightComponent implements OnInit {
     this.selectedFaction.active = false;
     faction.active = true;
     this.selectedFaction = faction;
+  }
+
+  patata(): string {
+    return typeof this.focus;
   }
 
 }

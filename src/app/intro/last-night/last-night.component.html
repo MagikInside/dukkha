@@ -20,21 +20,21 @@
             <mat-button-toggle *ngFor="let focus of focusOptions; let index = index" value="{{index}}">{{focus.name}}</mat-button-toggle>
         </mat-button-toggle-group>
         
-        <app-description *ngIf="focus" [description]="focusOptions[focus].description"></app-description>
+        <app-description *ngIf="focus" [description]="focusOptions[+focus].description"></app-description>
         
     </ng-container>
 
 
     <ng-container *ngIf="step===2">
 
-        <p *ngIf="focus">{{focusOptions[focus].longDesc}}</p>
+        <p *ngIf="focus">{{focusOptions[+focus].longDesc}}</p>
 
         <p>Distant, fleeting and elusive a vision crosses your mind. You concentrate, trying hard not to lose it, when suddenly you find yourself standing on a small hill, all around you you can see dilapidated buildings, as far as the eye can see, burning in blue flames. The wind carries a weak sound, which you cannot hear. You refuse to lose it, and twist reality with your will, so now you can hear the whisper:</p>
-        <p><i>"And the last days will come, and the world will plunge into Dukkha, with Athelios in the day sky will marking the arrival. Find the child of the thin blood, kill the Bearer of the Storm, and know those of the silver crown will betray you.</i></p>
+        <p><i>"And the last days will come, and the world will plunge into Dukkha, with Athelios in the day sky will marking the arrival. Find the child of the thin blood, put an end the Bearer of the Storm, and know those of the silver crown will betray you."</i></p>
 
-        <p>You come back to yourself, still shaken and trembling with the force of the vision, the power of the words. Around you the Inner Council members mill around, their gazes questioning. Illuminating, in the sky, little by little a star of reddish light is covered.</p>
+        <p>You come back to yourself, still shaken and trembling with the force of the vision, the power of the words. Around you the Inner Council members mill around, their gazes questioning. Illuminating, in the sky, slowly a star of reddish light is covered by thick black clouds.</p>
 
-            <p>The monsters begin to break through the defenses, they say. All around you, the leaders of the five factions await for answers.</p>
+        <p>The monsters begin to break through the defenses, they say. All around you, the leaders of the five factions await for answers.</p>
 
 
     </ng-container>
@@ -50,8 +50,11 @@
         </section>
         <app-description [description]="selectedFaction.description"></app-description>
         <br><br>
-        <p>Should efforts be concentrated on defending or evacuating the city?</p>
+        <p>You guide the the mayor and the council members through the different decisions.</p>
+
+        <p>What strategy should the factions focus their efforts on?</p>
         <mat-button-toggle-group name="strategy" aria-label="Strategy" [(ngModel)]="strategy">
+            <mat-button-toggle value="attack">Attack</mat-button-toggle>
             <mat-button-toggle value="defense">Defend</mat-button-toggle>
             <mat-button-toggle value="evacuation">Evacuate</mat-button-toggle>
         </mat-button-toggle-group>
@@ -64,20 +67,37 @@
         </div>
         <br><br>
         <div *ngIf="factionLead">
-            <p>The creatures were beginning to ravage the city, which faction should stand at the forefront of the defenses?</p>
-            <mat-button-toggle-group name="factionLead" aria-label="Faction lead">
+            <p>The creatures were beginning to ravage the city, which faction should stand at the vanguard confronting this creatures?</p>
+            <mat-button-toggle-group name="vanguardFaction" aria-label="Vanguard Faction"  [(ngModel)]="vanguardFaction">
                 <mat-button-toggle *ngFor="let faction of factions" value="{{faction.name}}" [disabled]="faction.name === factionLead">{{faction.name}}</mat-button-toggle>
             </mat-button-toggle-group>
         </div>
         <div *ngIf="factionLead">
             <p>It was impossible to protect the entire city, one of the districts had to be abandoned to their fate, which one?</p>
-            <mat-button-toggle-group name="factionLead" aria-label="Faction lead">
-                <mat-button-toggle>Trade district</mat-button-toggle>
-                <mat-button-toggle>The Slums</mat-button-toggle>
-                <mat-button-toggle>Noble district</mat-button-toggle>
-                <mat-button-toggle>Temple district</mat-button-toggle>
+            <mat-button-toggle-group name="fallenDistrict" aria-label="District" [(ngModel)]="fallenDistrict">
+                <mat-button-toggle value="Trade district">Trade district</mat-button-toggle>
+                <mat-button-toggle  value="The Slums">The Slums</mat-button-toggle>
+                <mat-button-toggle  value="Noble district">Noble district</mat-button-toggle>
+                <mat-button-toggle  value="Temple district">Temple district</mat-button-toggle>
             </mat-button-toggle-group>
         </div>
+    </ng-container>
+    <ng-container *ngIf="step===4">
+        <p>The arguments quickly died down to the sound of screaming and the clash of metal. The creatures began to breach, and they all obeyed your orders, after all nobody else could see through the Gauntlet, or blend Reality like you did.</p>
+        <p>The {{factionLead}} troops were preparing to lead the {{strategy}}, and the {{vanguardFaction}} grouped his forces to resist the raids over the city districts, all but the {{fallenDistrict}}, where chaos, screams and death soon spread as the creatures advanced inexorably, destroying everything in their path.</p>
+
+        <p>And you, accompanied by a small platoon of Red Brands, were escorted to the city hall, in the center of Phandel: from there you had access to the whole city, you had to resist.</p>
+        <p>You were still very new to your powers, but releasing only small fractions here and there, burning only a little bit of your Quintessence, the square held.</p>
+        
+        <p *ngIf="+focus === 0">Closing your eyes for a moment in meditation, intoning a rapid psalmody and moving your hands in a circle, you suddenly conjured powerful spirits, of lightning, of the wind or of the earth, which, tearing the veil, appeared, shapeless and barely visible, and destroyed dozens of enemies, to disappear just as quickly.</p>
+        <p *ngIf="+focus === 1">Clasping your hands in prayer, you intoned a quick litany to the gods, to grant you their light of justice, and extending the palm of your hand, a ray of pure light burned any monster that stood in its way.</p>
+        <p *ngIf="+focus === 2">Reciting a quick incantation, as you traced the necessary runes rhythmically and precisely in the air with your hands, your eyes glowed gold as you sent forth huge flames of orange fire right and left, consuming the creatures with savage screams.</p>
+        <p *ngIf="+focus === 3">Kneeling on the ground, and with a quick cut in your hand you had drawn a circle with the blood that oozed from the wound, and from that circle had emerged three terrible creatures 20 feet tall, without a head, multiple tentacular eyes and sharp claws. , who had launched themselves to tear apart the attackers.</p>
+
+        <p>But there were too many, simply too many... and each one that fell was replaced by two more who stormed the square ready to fight... Soon the conclusion was so obvious that it hit you like a slap in the face:</p>
+        <p><strong>Phandel was lost...</strong> </p>
+        <p>The only thing you could do is hold on a little longer, so that as many people as possible could be saved. You looked up, at the handful of soldiers from the various factions still holding out. You had to select who would stay with you for the final stand: A shot at glory, maybe, but maybe you also selected them to die.</p>
+
     </ng-container>
 </section>
 
