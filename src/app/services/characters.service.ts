@@ -3,16 +3,19 @@ import {Observable} from 'rxjs';
 import {Character} from '../models/character.model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import {debounceTime} from 'rxjs/operators';
+import { Condition } from '../models/condition.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharactersService {
 
+
   private charactersCollection: AngularFirestoreCollection<Character>;
 
   constructor(private readonly afs: AngularFirestore) {
     this.charactersCollection =  afs.collection<Character>('characters');
+
   }
 
   get characters$(): Observable<Character[]> {
@@ -31,6 +34,10 @@ export class CharactersService {
 
   updateCharacter(character: Character): void {
     this.charactersCollection.doc(character.id).update(character);
+  }
+
+  insertCharacter(character: Character): void {
+    this.charactersCollection.add(character);
   }
 
 }

@@ -1,21 +1,20 @@
-#select-characters
+.select-characters
+  align-items: center
   background-color: #DFE0E2
-  height: calc(100% - 60px)
-  display: grid
-  grid-template-columns:  50% 50%
-  grid-template-rows: 20% 80%
-  grid-template-areas: "display display" "player rival"
+  display: flex
+  flex-direction: column
+  height: fit-content
+  min-height: 100vh
+  h1
+    background-color: #2B4162
+    color: white
+    font-size: 32px
+    margin: 0
+    padding: 12px 0
+    text-align: center
+    width: 100%
   .display
-    grid-area: display
+    max-width: 1200px
   .player
-    grid-area: player
-  .rival
-    grid-area: rival
-
-@media only screen and (max-width: 800px)
-  #select-characters
-    grid-template-columns:  100%
-    grid-template-rows: 20% 80%
-    grid-template-areas: "display" "player"
-
+    max-width: 1200px
 

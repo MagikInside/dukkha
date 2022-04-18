@@ -1,5 +1,6 @@
 <div class="intro">
     <app-prolog *ngIf="step === 0" [user]="user$ | async"></app-prolog>
-    <app-last-night *ngIf="step > 0" [step]="step"></app-last-night>
-    <button mat-raised-button (click)="next()">{{step === 0 ? 'start' : 'continue'}}</button>
+    <app-last-night *ngIf="step > 0 && step < 4" [step]="step"></app-last-night>
+    <app-selection  *ngIf="step === 4"></app-selection>
+    <button mat-raised-button (click)="next()">{{step === 0 ? 'start' : step === 4 ? 'fight' : 'continue'}}</button>
 </div>

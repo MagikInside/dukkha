@@ -1,7 +1,8 @@
 <div class="selection">
-  <h2>Heroes</h2>
-  <mat-card class="displayed-character mat-elevation-z3">
-    <img alt="character image" src="assets/imgs/characters/{{character?.img}}">
+  <h2>Selection</h2>
+  <mat-card class="displayed-character">
+    <figure><img alt="Character image" src="assets/imgs/characters/{{character?.img}}"></figure>
+  
     <section class="details">
       <span><strong>name:</strong> {{character?.name}}</span>
       <span><strong>attack:</strong> {{character?.attack}}</span>
@@ -17,9 +18,8 @@
     <label>Points</label>
   </section>
   <section class="selected-characters">
-  <h3>Selected</h3>
-  <div class="character-list">
-    <div class="character" [ngClass]="{'active': character.active}" *ngFor="let character of selectedCharacters">
+  <div *ngIf="selectedCharacters?.size" class="character-list">
+    <div class="character" *ngFor="let character of selectedCharacters">
       <img width="60" height="60" alt="character-img" src="assets/imgs/characters/{{character.img}}">
     </div>
   </div>

@@ -22,7 +22,7 @@ export class IntroComponent implements OnInit {
   }
   
   next() {
-    if(this.step === 4) {
+    if(this.step === 5) {
       this.router.navigate(['selection']);
     } else {
     this.step++;
