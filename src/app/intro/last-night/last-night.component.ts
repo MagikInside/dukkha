@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { Option } from '../../models/option.model';
 
 @Component({
@@ -7,9 +8,46 @@ import { Option } from '../../models/option.model';
   styleUrls: ['./last-night.component.sass']
 })
 export class LastNightComponent implements OnInit {
-
+  
   @Input() step = 0;
 
+  answers: Array<number | null> = [null, null, null, null, null];
+  
+  questions: Option[][] = [
+    [
+      {name: 'Meditation' , description: 'Close your eyes. Concentrate. Search in your inner thougts.', longDesc: 'You were a blue mage. You decide to seek guidance in meditation. You burn some incense, sit on the floor, close your eyes, and focus your will on the questions that lie in wait for you.'},
+      {name: 'Praying' , description: 'Ask the Gods for guide, for help.', longDesc: 'You were a white mage. You draw on divine inspiration. You light some candles around you and kneel, beseeching the gods to enlighten you with their wisdom.'},
+      {name: 'Reading', description: 'Search in old arcane books for answers.', longDesc: 'You were a red mage. You search through the dusty tomes of arcane knowledge that had belonged to another Mage years ago, trying to decipher answers among runes, glyphs and inscriptions, in lenghty texts and intelligible annotations.'},
+      {name: 'Sacrifice', description: 'Any knowledge demands a prize. In blood .', longDesc: "You were a black mage. You don't have time for contemplation, so with a heavy heart, you claim your old neighbor's poor cat. You spill his blood with an accurate cut, and with it you draw a pentacle on the ground, while demanding answers from the dark beings in the shadows." }, 
+    ],
+    [
+      {name: 'Attack', description: 'attack'},
+      {name: 'Defend', description: 'defense'},
+      {name: 'Evacuate', description: 'evacuation'},      
+    ],
+    [
+      {name: "Lord's alliance"},
+      {name: "Emerald Enclave"},
+      {name: "Harpers"},
+      {name: "Order of the Gauntlet"},
+      {name: "Zhentarim"},
+    ],
+    [
+      {name: "Lord's alliance"},
+      {name: "Emerald Enclave"},
+      {name: "Harpers"},
+      {name: "Order of the Gauntlet"},
+      {name: "Zhentarim"},
+    ],
+    [
+      {name: "Trade district"},
+      {name: "The Slums"},
+      {name: "Noble district"},
+      {name: "Temple district"},
+    ]
+  ];
+  
+  
   factions = [
     {name: "Lord's alliance", img: 'alliance.webp', active: true, description: "The Lords’ Alliance is a coalition of rulers from cities and towns across all Dukkha, who collectively agree that some solidarity and collaboration is needed to keep monsters and evil organizations at bay. The different rulers, nobles and lords in the Alliance works for the fate and fortune of all, but for his or her own settlement above all others. The alliance counts among its ranks people with vast resources and political influence, also supported by a powerful army, and in general is well-rounded in all aspects. On the other hand, its organization and hierarchy is complex, dealing with different interests and priorities for the different lords."},
     {name: "Emerald Enclave", img: 'emerald.webp', active: false, description: "The Emerald Enclave is a far-ranging group that opposes threats to the natural world and helps others survive the many perils of the wild. Members of the Emerald Enclave know how to survive, and more importantly, they want to help others do the same. They are not opposed to civilization or progress, but they strive to prevent civilization and the wilderness from destroying one another. Within its ranks, the organization boasts powerful archdruids, as well as allies with ancient beings and creatures. On the other hand, they do not have many members, who tend to be distant, isolated and poorly coordinated."},
@@ -25,22 +63,26 @@ export class LastNightComponent implements OnInit {
     {name: 'Sacrifice', description: 'Any knowledge demands a prize. In blood .', longDesc: "You were a black mage. You don't have time for contemplation, so with a heavy heart, you claim your old neighbor's poor cat. You spill his blood with an accurate cut, and with it you draw a pentacle on the ground, while demanding answers from the dark beings in the shadows." }, 
   ];
   selectedFocus: Option | null = null;
-
+  
   focus: number | null = null;
   strategy = '';
   factionLead = '';
   vanguardFaction = '';
-   fallenDistrict = '';
-
+  fallenDistrict = '';
+  
   constructor() { }
-
+  
   ngOnInit(): void {
   }
-
+  
   selectFaction(faction: {name:string, img: string, active: boolean, description: string}) {
     this.selectedFaction.active = false;
     faction.active = true;
     this.selectedFaction = faction;
   }
-
+  
+  onAnswerChange(answer: number, question: number) {
+    this.answers[question] = answer;
+  }
+  
 }

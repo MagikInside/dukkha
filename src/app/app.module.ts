@@ -23,6 +23,7 @@ import { FormsModule } from '@angular/forms';
 import { PrologComponent } from './intro/prolog/prolog.component';
 import { LastNightComponent } from './intro/last-night/last-night.component';
 import { DescriptionComponent } from './shared/description/description.component';
+import { QuestionComponent } from './intro/question/question.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DescriptionComponent } from './shared/description/description.component
     SelectionDisplayComponent,
     PrologComponent,
     LastNightComponent,
-    DescriptionComponent
+    DescriptionComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,

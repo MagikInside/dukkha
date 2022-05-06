@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class DescriptionComponent {
 
-  @Input() description= '';
+  @Input() description: string | undefined = '';
 
 }
