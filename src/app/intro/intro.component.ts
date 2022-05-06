@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { UserService } from '../services/user.service';
 import firebase from 'firebase/compat/app';
 import { Router } from '@angular/router';
+import { StateService } from '../services/state.service';
+import { State } from '../models/state.model';
 
 @Component({
   selector: 'app-intro',
@@ -12,20 +14,21 @@ import { Router } from '@angular/router';
 export class IntroComponent implements OnInit {
   
   user$: Observable<firebase.User | null>;
-  step = 0;    
+  state$: Observable<State | undefined>;
   
-  constructor(private userService: UserService, private router: Router) { 
+  constructor(private userService: UserService, private stateService: StateService, private router: Router) { 
     this.user$ = userService.user$;
+    this.state$ = this.stateService.getState();
   }
   
   ngOnInit(): void {
   }
   
-  next() {
-    if(this.step === 5) {
+  next(step: number) {
+    if(step === 5) {
       this.router.navigate(['selection']);
     } else {
-    this.step++;
+    this.stateService.incrementStep(step);
     window.scrollTo({top: 0, behavior: 'smooth'});
     }
   }

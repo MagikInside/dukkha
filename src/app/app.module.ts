@@ -18,7 +18,6 @@ import { CommonModule } from '@angular/common';
 import { SelectionComponent } from './selection/selection/selection.component';
 import { DisplayComponent } from './selection/characters-display/characters-display.component';
 import { SelectionDisplayComponent } from './selection/selection-display/selection-display.component';
-import { PhaseDisplayComponent } from './selection/phase-display/phase-display.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { FormsModule } from '@angular/forms';
 import { PrologComponent } from './intro/prolog/prolog.component';
@@ -33,7 +32,6 @@ import { DescriptionComponent } from './shared/description/description.component
     SelectionComponent,
     DisplayComponent,
     SelectionDisplayComponent,
-    PhaseDisplayComponent,
     PrologComponent,
     LastNightComponent,
     DescriptionComponent

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {Character} from '../../models/character.model';
-import { PhasesService } from 'src/app/services/phases.service';
-import { Phase } from 'src/app/models/phases.model';
 import { CharactersService } from 'src/app/services/characters.service';
 
 @Component({
@@ -13,7 +11,6 @@ import { CharactersService } from 'src/app/services/characters.service';
 export class SelectionComponent implements OnInit {
 
   characters$: Observable<Character[]>;
-  phases$: Observable<Phase[]>;
   displayedCharacter: Character | null = null;
   selectedCharacters = new Set<Character>();
   selectedPoints = 0;
@@ -22,9 +19,8 @@ export class SelectionComponent implements OnInit {
     maxPoints: 5
   }
 
-  constructor(private charactersService: CharactersService, private phasesService: PhasesService) {
+  constructor(private charactersService: CharactersService) {
     this.characters$ = charactersService.characters$;
-    this.phases$ = phasesService.getPhases();
   }
 
   ngOnInit(): void {

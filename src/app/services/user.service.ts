@@ -11,9 +11,10 @@ export class UserService {
   user$: Observable<firebase.User | null>;
   uid: string | undefined;
 
-  constructor(private readonly auth: AngularFireAuth) { 
+  constructor(private readonly auth: AngularFireAuth) {
     this.user$ = this.auth.authState.pipe(
-      tap(user => this.uid = user?.uid)
+      tap(user => this.uid = user?.uid),
     );
   }
+
 }
