@@ -2,19 +2,19 @@ import { Element } from "./element.model"
 
 export const ELEMENTS: Element[] = [
     {
-        name: 'fire',
-        icon: 'local_fire_department'
+        name: 'learn',
+        icon: 'auto_stories'
     },
     {
-        name: 'water',
-        icon: 'water_drop'
+        name: 'discover',
+        icon: 'meeting_room'
     },
     {
-        name: 'earth',
-        icon: 'grass'
+        name: 'empower',
+        icon: 'dark_mode'
     },
     {
-        name: 'air',
-        icon: 'air'
+        name: 'enlighten',
+        icon: 'brightness_high'
     },
 ]
