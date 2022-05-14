@@ -1,4 +1,6 @@
+import { User } from "./user.model";
+
 export interface State {
-    uid: string;
+    user?: User;
     step: number;
 }

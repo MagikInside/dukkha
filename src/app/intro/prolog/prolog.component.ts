@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import firebase from 'firebase/compat/app';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-prolog',
@@ -8,7 +9,7 @@ import firebase from 'firebase/compat/app';
 })
 export class PrologComponent implements OnInit {
 
-  @Input() user: firebase.User | null = null;
+  @Input() user: User | null = null;
 
   constructor() { }
 

@@ -5,6 +5,7 @@ import firebase from 'firebase/compat/app';
 import { Router } from '@angular/router';
 import { StateService } from '../services/state.service';
 import { State } from '../models/state.model';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-intro',
@@ -13,12 +14,13 @@ import { State } from '../models/state.model';
 })
 export class IntroComponent implements OnInit {
   
-  user$: Observable<firebase.User | null>;
+  user$: Observable<User>;
   state$: Observable<State | undefined>;
+  canContinue: boolean = false;
   
   constructor(private userService: UserService, private stateService: StateService, private router: Router) { 
-    this.user$ = userService.user$;
-    this.state$ = this.stateService.getState();
+    this.user$ = this.stateService.user$;
+    this.state$ = this.stateService.state$;
   }
   
   ngOnInit(): void {

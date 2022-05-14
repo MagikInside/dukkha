@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable, tap } from 'rxjs';
 import firebase from 'firebase/compat/app';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,15 @@ import firebase from 'firebase/compat/app';
 export class UserService {
 
   user$: Observable<firebase.User | null>;
-  uid: string | undefined;
+  user: User | null = null;
 
   constructor(private readonly auth: AngularFireAuth) {
     this.user$ = this.auth.authState.pipe(
-      tap(user => this.uid = user?.uid),
+      tap(user => {
+        if(user) {
+        this.user = {name: user.displayName, uid: user.uid};
+        }
+      }),
     );
   }
 
