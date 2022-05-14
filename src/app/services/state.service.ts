@@ -4,13 +4,14 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import { UserService } from "./user.service";
 import { State } from "../models/state.model";
 import { User } from "../models/user.model";
+import { Answers } from "../models/answers.model";
 
 @Injectable({
     providedIn: 'root'
   })
 export class StateService {
 
-    private store = new BehaviorSubject<State>({ step: 0});
+    private store = new BehaviorSubject<State>({ step: 0, answers: [] });
     public state$ = this.store.asObservable();
 
     public user$ = this.state$.pipe(map(state => state.user), filter(user => !!user) as OperatorFunction<User | undefined, User>, distinctUntilChanged());
@@ -22,7 +23,7 @@ export class StateService {
             return this.afs.doc<State>('states/' + user.uid).valueChanges().pipe(
               tap(state => {
                   if (!state) {
-                this.afs.collection<State>('states').doc(user.uid).set({ step: 0});
+                this.afs.collection<State>('states').doc(user.uid).set({ step: 0, answers: []});
                 }
               }));
           } else {
@@ -33,8 +34,8 @@ export class StateService {
       ).subscribe(state => this.store.next(state));
       }
 
-      incrementStep(step: number) {
-        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({step: step + 1});
+      incrementStep(step: number, answers: Answers) {
+        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({step: step + 1, answers});
       }
 
   }
