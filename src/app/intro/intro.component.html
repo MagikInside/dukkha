@@ -1,6 +1,6 @@
 <div class="intro" *ngIf="state$ | async as state">
     <app-prolog *ngIf="state.step === 0" [user]="user$ | async"></app-prolog>
-    <app-last-night *ngIf="state.step > 0 && state.step < 4" [step]="state.step"></app-last-night>
+    <app-last-night *ngIf="state.step > 0 && state.step < 4" [step]="state.step" [answers]="state.answers" (answerChange)="onAnswerChange($event, state.step)"></app-last-night>
     <app-selection  *ngIf="state.step === 4"></app-selection>
     <button mat-raised-button (click)="next(state.step)" [disabled]="!canContinue">{{state.step === 0 ? 'start' : state.step === 4 ? 'fight' : 'continue'}}</button>
 </div>

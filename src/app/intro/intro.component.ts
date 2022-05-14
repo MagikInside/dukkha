@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { UserService } from '../services/user.service';
-import firebase from 'firebase/compat/app';
 import { Router } from '@angular/router';
 import { StateService } from '../services/state.service';
 import { State } from '../models/state.model';
 import { User } from '../models/user.model';
+import { Answers } from '../models/answers.model';
+import { ValidationService } from '../services/validation.service';
 
 @Component({
   selector: 'app-intro',
@@ -17,10 +18,17 @@ export class IntroComponent implements OnInit {
   user$: Observable<User>;
   state$: Observable<State | undefined>;
   canContinue: boolean = false;
+
   
-  constructor(private userService: UserService, private stateService: StateService, private router: Router) { 
+  constructor(private userService: UserService, private stateService: StateService, private router: Router, private validationService: ValidationService) { 
     this.user$ = this.stateService.user$;
-    this.state$ = this.stateService.state$;
+    this.state$ = this.stateService.state$.pipe(
+      tap((state) => {
+        console.log(state);
+        window.scrollTo({top: 0, behavior: 'smooth'});
+        this.canContinue = this.validationService.canContinue(state.answers, state.step);
+      })
+    );
   }
   
   ngOnInit(): void {
@@ -31,8 +39,13 @@ export class IntroComponent implements OnInit {
       this.router.navigate(['selection']);
     } else {
     this.stateService.incrementStep(step);
-    window.scrollTo({top: 0, behavior: 'smooth'});
+  
     }
+  }
+
+  onAnswerChange(answers: Answers, step: number) {
+    this.stateService.updateAnswers(answers);
+    this.canContinue = this.validationService.canContinue(answers, step);
   }
   
   

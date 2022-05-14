@@ -12,7 +12,7 @@ export class ValidationService {
     } else if(step === 1) {
       return answers.length === 1;
     } else if(step === 3) {
-      return answers.length === 1;
+      return answers.length === 5;
     }
     return false;
   }

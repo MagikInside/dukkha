@@ -34,8 +34,12 @@ export class StateService {
       ).subscribe(state => this.store.next(state));
       }
 
-      incrementStep(step: number, answers: Answers) {
-        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({step: step + 1, answers});
+      incrementStep(step: number) {
+        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({ step: step + 1 });
+      }
+
+      updateAnswers( answers: Answers) {
+        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({ answers });
       }
 
   }

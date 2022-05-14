@@ -11,7 +11,7 @@ export class QuestionComponent implements OnInit {
 
   @Input() name = '';
   @Input() options: Option[] = [];
-  answer: number | null = null;
+  @Input() answer: number | null = null;
   @Output () answerChange = new EventEmitter<number>();
 
   constructor() { }

@@ -16,7 +16,7 @@
         </div>
         <p>The mystical <strong>Red Star</strong>. Only the Awake could see it. It was said that it whispered secrets to them, showed the future, revealed the truth. It was said that the Mages came into contact with it with different rituals, but nobody had taught you, what should you do?</p>
         
-        <app-question [name]="'focus'" [options]="questions[0]" (answerChange)="onAnswerChange($event, 0)"></app-question>
+        <app-question [answer]="answers[0]" [name]="'focus'" [options]="questions[0]" (answerChange)="onAnswerChange($event, 0)"></app-question>
         
     </ng-container>
 
@@ -49,33 +49,22 @@
         <p>You guide the the mayor and the council members through the different decisions.</p>
 
         <p>What strategy should the factions focus their efforts on?</p>
-        <mat-button-toggle-group name="strategy" aria-label="Strategy" [(ngModel)]="strategy">
-            <mat-button-toggle value="attack">Attack</mat-button-toggle>
-            <mat-button-toggle value="defense">Defend</mat-button-toggle>
-            <mat-button-toggle value="evacuation">Evacuate</mat-button-toggle>
-        </mat-button-toggle-group>
+        <app-question [answer]="answers[1]" [name]="'strategy'" [options]="questions[1]" (answerChange)="onAnswerChange($event, 1)"></app-question>
+    
         <br><br>
-        <div *ngIf="strategy">
-            <p>Which faction should lead the {{strategy}}?</p>
-            <mat-button-toggle-group name="factionLead" aria-label="Faction lead" [(ngModel)]="factionLead">
-                <mat-button-toggle *ngFor="let faction of factions" value="{{faction.name}}">{{faction.name}}</mat-button-toggle>
-            </mat-button-toggle-group>
+        <div *ngIf="answers[1] !== undefined">
+            <p>Which faction should lead the {{questions[1][answers[1]].shortDesc}}?</p>
+            <app-question [answer]="answers[2]" [name]="'faction lead'" [options]="questions[2]" (answerChange)="onAnswerChange($event, 2)"></app-question>
+            
         </div>
         <br><br>
-        <div *ngIf="factionLead">
+        <div *ngIf="answers[2] !== undefined">
             <p>The creatures were beginning to ravage the city, which faction should stand at the vanguard confronting this creatures?</p>
-            <mat-button-toggle-group name="vanguardFaction" aria-label="Vanguard Faction"  [(ngModel)]="vanguardFaction">
-                <mat-button-toggle *ngFor="let faction of factions" value="{{faction.name}}" [disabled]="faction.name === factionLead">{{faction.name}}</mat-button-toggle>
-            </mat-button-toggle-group>
+            <app-question [answer]="answers[3]" [name]="'faction lead'" [options]="questions[3]" (answerChange)="onAnswerChange($event, 3)"></app-question>
         </div>
-        <div *ngIf="factionLead">
+        <div *ngIf="answers[3] !== undefined">
             <p>It was impossible to protect the entire city, one of the districts had to be abandoned to their fate, which one?</p>
-            <mat-button-toggle-group name="fallenDistrict" aria-label="District" [(ngModel)]="fallenDistrict">
-                <mat-button-toggle value="Trade district">Trade district</mat-button-toggle>
-                <mat-button-toggle  value="The Slums">The Slums</mat-button-toggle>
-                <mat-button-toggle  value="Noble district">Noble district</mat-button-toggle>
-                <mat-button-toggle  value="Temple district">Temple district</mat-button-toggle>
-            </mat-button-toggle-group>
+            <app-question [answer]="answers[4]" [name]="'faction lead'" [options]="questions[4]" (answerChange)="onAnswerChange($event, 4)"></app-question>
         </div>
     </ng-container>
     <ng-container *ngIf="step===4">
