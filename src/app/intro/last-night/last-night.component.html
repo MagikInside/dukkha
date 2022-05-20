@@ -51,21 +51,19 @@
         <p>What strategy should the factions focus their efforts on?</p>
         <app-question [answer]="answers[1]" [name]="'strategy'" [options]="questions[1]" (answerChange)="onAnswerChange($event, 1)"></app-question>
     
-        <br><br>
-        <div *ngIf="answers[1] !== undefined">
+        <ng-container *ngIf="answers[1] !== undefined">
             <p>Which faction should lead the {{questions[1][answers[1]].shortDesc}}?</p>
             <app-question [answer]="answers[2]" [name]="'faction lead'" [options]="questions[2]" (answerChange)="onAnswerChange($event, 2)"></app-question>
-            
-        </div>
-        <br><br>
-        <div *ngIf="answers[2] !== undefined">
+        </ng-container>
+        
+        <ng-container *ngIf="answers[2] !== undefined">
             <p>The creatures were beginning to ravage the city, which faction should stand at the vanguard confronting this creatures?</p>
             <app-question [answer]="answers[3]" [name]="'faction lead'" [options]="questions[3]" (answerChange)="onAnswerChange($event, 3)"></app-question>
-        </div>
-        <div *ngIf="answers[3] !== undefined">
+        </ng-container>
+        <ng-container *ngIf="answers[3] !== undefined">
             <p>It was impossible to protect the entire city, one of the districts had to be abandoned to their fate, which one?</p>
             <app-question [answer]="answers[4]" [name]="'faction lead'" [options]="questions[4]" (answerChange)="onAnswerChange($event, 4)"></app-question>
-        </div>
+        </ng-container>
     </ng-container>
     <ng-container *ngIf="step===4">
         <p>The arguments quickly died down to the sound of screaming and the clash of metal. The creatures began to breach, and they all obeyed your orders, after all nobody else could see through the Gauntlet, or blend Reality like you did.</p>

@@ -19,11 +19,13 @@ import { SelectionComponent } from './selection/selection/selection.component';
 import { DisplayComponent } from './selection/characters-display/characters-display.component';
 import { SelectionDisplayComponent } from './selection/selection-display/selection-display.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { PrologComponent } from './intro/prolog/prolog.component';
 import { LastNightComponent } from './intro/last-night/last-night.component';
 import { DescriptionComponent } from './shared/description/description.component';
 import { QuestionComponent } from './intro/question/question.component';
+import { SelectedCharacterComponent } from './selection/selected-character/selected-character.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { QuestionComponent } from './intro/question/question.component';
     PrologComponent,
     LastNightComponent,
     DescriptionComponent,
-    QuestionComponent
+    QuestionComponent,
+    SelectedCharacterComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { QuestionComponent } from './intro/question/question.component';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
+    MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireAuthGuardModule,

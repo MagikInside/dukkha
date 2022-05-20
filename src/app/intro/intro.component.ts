@@ -24,8 +24,9 @@ export class IntroComponent implements OnInit {
     this.user$ = this.stateService.user$;
     this.state$ = this.stateService.state$.pipe(
       tap((state) => {
-        console.log(state);
-        window.scrollTo({top: 0, behavior: 'smooth'});
+        if(state.scrollUp) {
+          window.scrollTo({top: 0, behavior: 'smooth'});
+        }
         this.canContinue = this.validationService.canContinue(state.answers, state.step);
       })
     );

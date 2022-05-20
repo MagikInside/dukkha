@@ -1,27 +1,16 @@
-<div class="selection">
-  <h2>Selection</h2>
-  <mat-card class="displayed-character">
-    <figure><img alt="Character image" src="assets/imgs/characters/{{character?.img}}"></figure>
-  
-    <section class="details">
-      <span><strong>name:</strong> {{character?.name}}</span>
-      <span><strong>attack:</strong> {{character?.attack}}</span>
-      <span><strong>defense:</strong> {{character?.defense}}</span>
-      <span><strong>aliance:</strong> {{character?.alliance}}</span>
-      <span><strong>points:</strong> {{character?.points}}</span>
-      <button mat-raised-button (click)="select()">Select</button>
+<div class="selection-display">
+  <h2>Selected</h2>
+  <section class="selected">
+    <section class="points">
+      <p>{{selectedPoints}}</p>
+      <label>Points</label>
     </section>
-  </mat-card>
-  
-  <section class="selected-points">
-    <p>{{selectedPoints}}</p>
-    <label>Points</label>
+    <section class="characters">
+      <p class="empty" *ngIf="selectedCharacters?.length === 0">Select your troops</p>
+      <div class="character" *ngFor="let character of selectedCharacters">
+        <img width="60" height="60" alt="character-img" src="assets/imgs/characters/{{character.img}}">
+      </div>
   </section>
-  <section class="selected-characters">
-  <div *ngIf="selectedCharacters?.size" class="character-list">
-    <div class="character" *ngFor="let character of selectedCharacters">
-      <img width="60" height="60" alt="character-img" src="assets/imgs/characters/{{character.img}}">
-    </div>
-  </div>
-</section>
+  </section>
+ 
 </div>

@@ -14,6 +14,9 @@ export class ValidationService {
     } else if(step === 3) {
       return answers.length === 5;
     }
+    else if(step === 4) {
+      return true;
+    }
     return false;
   }
 }

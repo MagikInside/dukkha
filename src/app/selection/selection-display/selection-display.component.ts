@@ -6,20 +6,11 @@ import {Character} from '../../models/character.model';
   templateUrl: './selection-display.component.html',
   styleUrls: ['./selection-display.component.sass']
 })
-export class SelectionDisplayComponent implements OnInit {
+export class SelectionDisplayComponent {
 
   @Input() character: Character | null = null;
-  @Input() selectedCharacters: Set<Character> | null = null;
+  @Input() selectedCharacters: Character[] | null = [];
+
   @Input() selectedPoints = 0;
-  @Output() selectCharacter = new EventEmitter<void>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  select() {
-      this.selectCharacter.emit();
-  }
 
 }
