@@ -1,0 +1,70 @@
+
+.character
+    box-sizing: border-box
+    height: 75px
+    background-color: #f5f5f5
+    margin-bottom: 10px
+    padding: 10px 16px
+    display: flex
+    align-items: center
+    width: 47%
+    user-select: none
+    &.dead
+      opacity: 0.3
+      background-color: black
+    &.critical
+      opacity: 0.7
+      background-color: #ef9a9a
+    &.injured
+      opacity: 0.8
+      background-color: #ffe082
+    &.paused
+      opacity: 0.6
+      background-color: #bbdefb
+    .info
+      display: flex
+      flex-direction: column
+      align-items: center
+      .token
+        margin-bottom: 5px
+      .heals
+        position: absolute
+        left: 44px
+        top: 0
+        cursor: pointer
+        .heal
+          font-size: 28px
+          color: #2196f3
+          padding: 2px
+        .num-of-heals
+          position: relative
+          top: -12px
+          color: #616161
+    
+    .dices
+      border: 1px solid #d5d5d5
+      margin: 8px
+      height: 60px
+      flex: 1 1 auto
+      display: flex
+      flex-wrap: wrap
+      .dice
+        font-size: 16px
+        margin: 0 10px
+        height: 16px
+        width: 16px
+        .❌
+          color: #f44336
+        .✅
+          color: #4caf50
+        .➖
+          color: #bdbdbd
+        .💥
+          color: #ffca28
+        .💀
+          color: #ba000d
+
+
+@media only screen and (max-width: 1200px)
+  .character
+    width: 100%

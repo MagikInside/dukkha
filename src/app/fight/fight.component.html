@@ -1,0 +1,5 @@
+<div class="fight">
+    <section class="combatants" *ngIf="selectedCharacters$ | async as selectedCharacters">
+    <app-character *ngFor="let character of selectedCharacters" [character]="character"></app-character>
+</section>
+</div>

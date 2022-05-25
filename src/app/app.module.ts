@@ -26,6 +26,8 @@ import { LastNightComponent } from './intro/last-night/last-night.component';
 import { DescriptionComponent } from './shared/description/description.component';
 import { QuestionComponent } from './intro/question/question.component';
 import { SelectedCharacterComponent } from './selection/selected-character/selected-character.component';
+import { FightComponent } from './fight/fight.component';
+import { CharacterComponent } from './fight/character/character.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { SelectedCharacterComponent } from './selection/selected-character/selec
     LastNightComponent,
     DescriptionComponent,
     QuestionComponent,
-    SelectedCharacterComponent
+    SelectedCharacterComponent,
+    FightComponent,
+    CharacterComponent
   ],
   imports: [
     BrowserModule,
