@@ -1,4 +1,5 @@
 import { Answers } from "./answers.model";
+import { Status } from "./status.model";
 import { User } from "./user.model";
 
 export interface State {
@@ -6,6 +7,7 @@ export interface State {
     step: number;
     answers: Answers;
     scrollUp: boolean;
-    selectedCharsIds: string[];
+    selectedHeroesStatus: Status[];
+    monstersStatus?: Status[];
     availablePoints: number;
 }

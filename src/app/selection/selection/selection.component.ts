@@ -25,7 +25,7 @@ export class SelectionComponent implements OnInit {
 
   constructor(private charactersService: CharactersService, private stateService: StateService, private snackBar: MatSnackBar) {
     this.characters$ = charactersService.characters$;
-    this.selectedCharsIds$ = stateService.selectedCharsIds$;
+    this.selectedCharsIds$ = stateService.selectedHeroesStatus$.pipe(map(status => status.map(status => status.id)));
     this.selectedCharacters$ = combineLatest([this.characters$, this.selectedCharsIds$]).pipe(
       map(([characters,selectedCharsIds]) => {
         return characters.filter(character => selectedCharsIds.includes(character.id));

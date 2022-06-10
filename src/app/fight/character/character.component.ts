@@ -11,6 +11,7 @@ export class CharacterComponent implements OnInit {
 
   @Input() character: Character | null = null;
   Condition = Condition;
+  
 
   constructor() { }
 
