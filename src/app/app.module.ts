@@ -16,7 +16,7 @@ import { IntroComponent } from './intro/intro.component';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { CommonModule } from '@angular/common';
 import { SelectionComponent } from './selection/selection/selection.component';
-import { DisplayComponent } from './selection/characters-display/characters-display.component';
+import { DisplayComponent } from './selection/heroes-display/heroes-display.component';
 import { SelectionDisplayComponent } from './selection/selection-display/selection-display.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -25,7 +25,7 @@ import { PrologComponent } from './intro/prolog/prolog.component';
 import { LastNightComponent } from './intro/last-night/last-night.component';
 import { DescriptionComponent } from './shared/description/description.component';
 import { QuestionComponent } from './intro/question/question.component';
-import { SelectedCharacterComponent } from './selection/selected-character/selected-character.component';
+import { SelectedHeroeComponent } from './selection/selected-hero/selected-hero.component';
 import { FightComponent } from './fight/fight.component';
 import { CharacterComponent } from './fight/character/character.component';
 
@@ -41,7 +41,7 @@ import { CharacterComponent } from './fight/character/character.component';
     LastNightComponent,
     DescriptionComponent,
     QuestionComponent,
-    SelectedCharacterComponent,
+    SelectedHeroeComponent,
     FightComponent,
     CharacterComponent
   ],

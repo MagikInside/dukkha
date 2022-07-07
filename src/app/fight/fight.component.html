@@ -1,6 +1,6 @@
 <div class="fight">
-    <section class="heroes" *ngIf="selectedCharacters$ | async as selectedCharacters">
-        <app-character *ngFor="let character of selectedCharacters" [character]="character"></app-character>
+    <section class="heroes" *ngIf="selectedHeroes$ | async as selectedHeroes">
+        <app-character *ngFor="let character of selectedHeroes" [character]="character"></app-character>
     </section>
     <section class="monsters" *ngIf="monsters$ | async as monsters">
         <app-character *ngFor="let monster of monsters" [character]="monster"></app-character>

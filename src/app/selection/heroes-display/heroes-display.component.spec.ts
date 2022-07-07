@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SelectedCharacterComponent } from './selected-character.component';
+import { DisplayComponent } from './heroes-display.component';
 
-describe('SelectedCharacterComponent', () => {
-  let component: SelectedCharacterComponent;
-  let fixture: ComponentFixture<SelectedCharacterComponent>;
+describe('DisplayComponent', () => {
+  let component: DisplayComponent;
+  let fixture: ComponentFixture<DisplayComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SelectedCharacterComponent ]
+      declarations: [ DisplayComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SelectedCharacterComponent);
+    fixture = TestBed.createComponent(DisplayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

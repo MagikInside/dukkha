@@ -6,8 +6,8 @@
       <label>Points</label>
     </section>
     <section class="characters">
-      <p class="empty" *ngIf="selectedCharacters?.length === 0">Select your troops</p>
-      <div class="character" *ngFor="let character of selectedCharacters">
+      <p class="empty" *ngIf="selectedHeroes?.length === 0">Select your troops</p>
+      <div class="character" *ngFor="let character of selectedHeroes">
         <img width="60" height="60" alt="character-img" src="assets/imgs/characters/{{character.img}}">
       </div>
   </section>

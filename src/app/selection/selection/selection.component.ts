@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {combineLatest, map, Observable} from 'rxjs';
 import {Character} from '../../models/character.model';
-import { CharactersService } from 'src/app/services/characters.service';
+import { HeroesService } from 'src/app/services/heroes.service';
 import { StateService } from 'src/app/services/state.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -12,10 +12,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class SelectionComponent implements OnInit {
 
-  characters$: Observable<Character[]>;
-  displayedCharacter: Character | null = null;
-  selectedCharsIds$: Observable<string[]>;
-  selectedCharacters$: Observable<Character[]>;
+  heroes$: Observable<Character[]>;
+  displayedHeroe: Character | null = null;
+  selectedHeroesIds$: Observable<string[]>;
+  selectedHeroes$: Observable<Character[]>;
 
   selectedPoints = 0;
 
@@ -23,12 +23,12 @@ export class SelectionComponent implements OnInit {
     maxPoints: 5
   }
 
-  constructor(private charactersService: CharactersService, private stateService: StateService, private snackBar: MatSnackBar) {
-    this.characters$ = charactersService.characters$;
-    this.selectedCharsIds$ = stateService.selectedHeroesStatus$.pipe(map(status => status.map(status => status.id)));
-    this.selectedCharacters$ = combineLatest([this.characters$, this.selectedCharsIds$]).pipe(
-      map(([characters,selectedCharsIds]) => {
-        return characters.filter(character => selectedCharsIds.includes(character.id));
+  constructor(private heroesService: HeroesService, private stateService: StateService, private snackBar: MatSnackBar) {
+    this.heroes$ = heroesService.heroes$;
+    this.selectedHeroesIds$ = stateService.selectedHeroesStatus$.pipe(map(status => status.map(status => status.id)));
+    this.selectedHeroes$ = combineLatest([this.heroes$, this.selectedHeroesIds$]).pipe(
+      map(([heroes, selectedHeroesIds]) => {
+        return heroes.filter(heroe => selectedHeroesIds.includes(heroe.id));
       })
     );
   }
@@ -36,23 +36,23 @@ export class SelectionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onDisplayCharacter(character: Character) {
-    if (this.displayedCharacter) {
-      this.displayedCharacter.active = false;
+  onDisplayHeroe(heroe: Character) {
+    if (this.displayedHeroe) {
+      this.displayedHeroe.active = false;
     }
-    character.active = true;
-    this.displayedCharacter = character;
+    heroe.active = true;
+    this.displayedHeroe = heroe;
   }
 
-  onSelectCharacter(addChar: boolean) {
-    if(this.displayedCharacter) {
+  onSelectHeroe(addChar: boolean) {
+    if(this.displayedHeroe) {
       if (addChar) {
-        const isMaxPoints = !this.stateService.selectCharacter(this.displayedCharacter.id, this.displayedCharacter.points);
+        const isMaxPoints = !this.stateService.selectCharacter(this.displayedHeroe.id, this.displayedHeroe.points);
         if(isMaxPoints) {
           this.snackBar.open('Max points reached', undefined, {duration: 2000});
         }
       } else {
-        this.stateService.deselectCharacter(this.displayedCharacter.id, this.displayedCharacter.points);
+        this.stateService.deselectCharacter(this.displayedHeroe.id, this.displayedHeroe.points);
       }
     }
   }

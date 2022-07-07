@@ -1,0 +1,17 @@
+<div class="selected-heroe">
+    <h2>Details</h2>
+    <mat-card class="displayed-heroe">
+      <figure><img alt="Character image" src="assets/imgs/characters/{{heroe?.img}}"></figure>
+    
+      <section class="details">
+        <span><strong>name:</strong> {{heroe?.name}}</span>
+        <span><strong>attack:</strong> {{heroe?.attack}}</span>
+        <span><strong>defense:</strong> {{heroe?.defense}}</span>
+        <span><strong>aliance:</strong> {{heroe?.alliance}}</span>
+        <span><strong>points:</strong> {{heroe?.points}}</span>
+        <button *ngIf="!selected" mat-raised-button (click)="select(true)">Select</button>
+        <button *ngIf="selected" class="deselect" mat-raised-button (click)="select(false)">Deselect</button>
+      </section>
+    </mat-card>
+   
+  </div>

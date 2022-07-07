@@ -8,8 +8,8 @@ import {Character} from '../../models/character.model';
 })
 export class SelectionDisplayComponent {
 
-  @Input() character: Character | null = null;
-  @Input() selectedCharacters: Character[] | null = [];
+  @Input() hero: Character | null = null;
+  @Input() selectedHeroes: Character[] | null = [];
 
   @Input() selectedPoints = 0;
 

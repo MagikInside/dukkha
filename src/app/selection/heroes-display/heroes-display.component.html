@@ -1,0 +1,7 @@
+<section id="display">
+  <div class="heroes">
+    <div (click)="display(hero)" class="character" [ngClass]="{'active': hero.active}" *ngFor="let hero of heroes">
+    <img width="60" height="60" alt="character-img" src="assets/imgs/characters/{{hero.img}}">
+  </div>
+  </div>
+</section>

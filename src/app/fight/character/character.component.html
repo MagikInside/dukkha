@@ -1,19 +1,22 @@
-<mat-card *ngIf="character" class="character"
-[ngClass]="{'dead': character.condition === Condition.Dead, 'injured': character.condition === Condition.Injured,
- 'critical': character.condition === Condition.Critical, 'paused': character.stop}">
+<mat-card *ngIf="character" class="character">
+<!--[ngClass]="{'dead': character.condition === Condition.Dead, 'injured': character.condition === Condition.Injured,
+ 'critical': character.condition === Condition.Critical, 'paused': character.stop}">-->
 <div class="info">
-<img alt="portrait" class="token" src="assets/imgs/characters/{{character.img}}" height="50" width="50px">
+<img alt="portrait" class="token" src="assets/imgs/characters/{{character.img}}" height="80" width="80px">
 <span>{{character.name}}</span>
 </div>
-
+<div>
+    <mat-icon>swords</mat-icon>
+    <mat-icon>shield</mat-icon>
+</div>
 
 <div class="dices">
-<span class="dice" *ngFor="let dice of character.dices">
+<!--<span class="dice" *ngFor="let dice of character.dices">
 <mat-icon class="❌"  *ngIf="dice==='❌'">close</mat-icon>
 <mat-icon class="✅" *ngIf="dice==='✅'">check</mat-icon>
 <mat-icon class="➖" *ngIf="dice==='➖'">unfold_less</mat-icon>
 <mat-icon class="💥" *ngIf="dice==='💥'">bolt</mat-icon>
 <mat-icon class="💀" *ngIf="dice==='💀'">radio_button_checked</mat-icon>
-</span>
+</span>-->
 </div>
 </mat-card>

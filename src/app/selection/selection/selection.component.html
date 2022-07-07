@@ -1,8 +1,8 @@
 <div class="selection">
   <h1>Select your troops</h1>
-  <ng-container *ngIf="characters$ | async as characters">
-    <app-characters-display (displayCharacter)="onDisplayCharacter($event)" [characters]="characters"></app-characters-display>
-    <app-selected-character *ngIf="displayedCharacter" (selectCharacter)="onSelectCharacter($event)" [character]="displayedCharacter" [selectedCharsIds]="selectedCharsIds$ | async"></app-selected-character>
-    <app-selection-display [selectedCharacters]="selectedCharacters$ | async" [selectedPoints]="5"></app-selection-display>
+  <ng-container *ngIf="heroes$ | async as heroes">
+    <app-heroes-display (displayHeroe)="onDisplayHeroe($event)" [heroes]="heroes"></app-heroes-display>
+    <app-selected-heroe *ngIf="displayedHeroe" (selectHeroe)="onSelectHeroe($event)" [heroe]="displayedHeroe" [selectedHeroesIds]="selectedHeroesIds$ | async"></app-selected-heroe>
+    <app-selection-display [selectedHeroes]="selectedHeroes$ | async" [selectedPoints]="5"></app-selection-display>
   </ng-container>
 </div>
