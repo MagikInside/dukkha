@@ -1,0 +1,68 @@
+.summary
+  display: flex
+  flex-direction: row
+  justify-content: center
+  margin: 18px 0
+  flex-wrap: wrap
+  gap: 20px
+  .info
+    height: 60px
+    width: 160px
+    color: white
+    border-radius: 4px
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: space-around
+    &.round
+      background-color: #2B4162
+    &.last-succ
+      background-color: #9FD356
+    &.last-fails
+      background-color: #A31621
+    &.total-info
+      background-color: #8d8d8d
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: stretch
+      .total
+        display: flex
+        align-items: center
+        text-align: center
+        font-size: x-large
+        .succs
+          flex: 1 0 auto
+        .fails
+          flex: 1 0 auto
+        .mat-icon
+          position: relative
+          top: 5px
+      .unit
+        font-size: small
+        text-align: center
+    .icon
+      width: 80px
+      display: flex
+      justify-content: center
+      .mat-icon
+        font-size: 42px
+        height: 42px
+        width: 42px
+        line-height: 42px
+    .number
+      width: 80px
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: space-between
+      .amount
+        font-size: x-large
+      .unit
+        font-size: small
+
+
+@media only screen and (max-width: 1000px)
+  .info-content .round-info
+    width: 40%
+

@@ -28,6 +28,7 @@ import { QuestionComponent } from './intro/question/question.component';
 import { SelectedHeroeComponent } from './selection/selected-hero/selected-hero.component';
 import { FightComponent } from './fight/fight.component';
 import { CharacterComponent } from './fight/character/character.component';
+import { SummaryComponent } from './fight/summary/summary.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CharacterComponent } from './fight/character/character.component';
     QuestionComponent,
     SelectedHeroeComponent,
     FightComponent,
-    CharacterComponent
+    CharacterComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,

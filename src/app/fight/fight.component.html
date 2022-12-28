@@ -1,5 +1,6 @@
 <div class="fight">
     <h1>Fight!</h1>
+    <app-summary></app-summary>
     <section class="fight-panel">
         <section class="heroes" *ngIf="selectedHeroes$ | async as selectedHeroes">
             <app-character *ngFor="let character of selectedHeroes" [character]="character"></app-character>
@@ -8,4 +9,5 @@
             <app-character *ngFor="let monster of monsters" [character]="monster" [isHero]="false"></app-character>
         </section>
     </section>
+    <button mat-raised-button>Fight</button>
 </div>
