@@ -10,7 +10,9 @@ import { Condition } from 'src/app/models/condition.enum';
 export class CharacterComponent implements OnInit {
 
   @Input() character: Character | null = null;
+  @Input() isHero = true;
   Condition = Condition;
+ 
   
 
   constructor() { }

@@ -1,6 +1,15 @@
 .fight
-    display: flex
-    width: 100%
-    gap: 20px
-    section
-        flex: 50%
+    section.fight-panel
+        display: grid
+        width: 100%
+        grid-gap: 20px
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr))
+                   
+        section
+           
+    h1
+        color: #2B4162
+        font-size: 32px
+        margin: 0 0 1rem
+        padding: 12px 0
+        text-align: center

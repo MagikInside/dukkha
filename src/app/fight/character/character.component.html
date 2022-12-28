@@ -1,4 +1,4 @@
-<mat-card *ngIf="character" class="character">
+<mat-card *ngIf="character" class="character" [ngClass]="{'hero': isHero, 'monster': !isHero}">
 <!--[ngClass]="{'dead': character.condition === Condition.Dead, 'injured': character.condition === Condition.Injured,
  'critical': character.condition === Condition.Critical, 'paused': character.stop}">-->
 <div class="info">
