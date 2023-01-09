@@ -6,6 +6,8 @@ import { State } from "../models/state.model";
 import { User } from "../models/user.model";
 import { Answers } from "../models/answers.model";
 import { Status } from "../models/status.model";
+import { Condition } from "../models/condition.enum";
+import { Stance } from "../models/stance.model";
 
 
 let _state: State = {
@@ -56,7 +58,12 @@ export class StateService {
       selectCharacter( selectedCharacterId: string, points: number): boolean {
         if (!_state.selectedHeroesStatus.some(status => status.id === selectedCharacterId)) {
           if(_state.availablePoints - points >= 0) {
-            this.afs.collection<State>('states').doc(this.userService.user?.uid).update({ selectedHeroesStatus: [..._state.selectedHeroesStatus, {id: selectedCharacterId}], availablePoints: _state.availablePoints - points, scrollUp: false });
+            this.afs.collection<State>('states').doc(this.userService.user?.uid).update({ selectedHeroesStatus: [..._state.selectedHeroesStatus, {
+              id: selectedCharacterId,
+              results: [],
+              condition: Condition.Ok,
+              stance: Stance.Defensive,
+            }], availablePoints: _state.availablePoints - points, scrollUp: false });
             return true;
           } else {
             return false;
@@ -66,10 +73,18 @@ export class StateService {
       }
 
       deselectCharacter( selectedCharacterId: string, points: number) {
-        const newselectedHeroesStatus = _state.selectedHeroesStatus.filter(status => status.id !== selectedCharacterId);
-        if (newselectedHeroesStatus.length !== _state.selectedHeroesStatus.length) {
-          this.afs.collection<State>('states').doc(this.userService.user?.uid).update({ selectedHeroesStatus: newselectedHeroesStatus, availablePoints: _state.availablePoints + points, scrollUp: false });  
+        const newSelectedHeroesStatus = _state.selectedHeroesStatus.filter(status => status.id !== selectedCharacterId);
+        if (newSelectedHeroesStatus.length !== _state.selectedHeroesStatus.length) {
+          this.afs.collection<State>('states').doc(this.userService.user?.uid).update({ selectedHeroesStatus: newSelectedHeroesStatus, availablePoints: _state.availablePoints + points, scrollUp: false });  
         }        
+      }
+
+      updateStance(selectedCharacterId: string, stance: Stance) {
+        const charStatusIndex = _state.selectedHeroesStatus.findIndex(status => status.id === selectedCharacterId);
+        const newCharStatus = {..._state.selectedHeroesStatus[charStatusIndex], stance }
+        const newSelectedHeroesStatus = [..._state.selectedHeroesStatus.slice(0, charStatusIndex), newCharStatus, ..._state.selectedHeroesStatus.slice(charStatusIndex +1)  ]
+        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({ selectedHeroesStatus: newSelectedHeroesStatus  });  
+
       }
 
   }

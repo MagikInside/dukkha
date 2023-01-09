@@ -14,7 +14,6 @@ export class SelectedHeroeComponent implements OnInit, OnChanges {
   selected = false;
 
   ngOnInit(): void {
-    console.log(this.heroe, this.selectedHeroesIds);
     this.selected = this.selectedHeroesIds?.some(id => this.heroe?.id === id) || false;
   }
   ngOnChanges({heroe}: {heroe: SimpleChange}) {

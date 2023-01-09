@@ -1,10 +1,9 @@
 import { Condition } from "./condition.enum";
+import { Stance } from "./stance.model";
 
 export interface Status {
     id: string;
-    dices?: string[];
-    condition?: Condition;
-    stop?: boolean;
-    roll?: number;
-    heals?: number;
+    results: string[];
+    condition: Condition;
+    stance: Stance;
   }

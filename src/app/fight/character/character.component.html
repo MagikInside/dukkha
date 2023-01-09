@@ -5,10 +5,14 @@
 <img alt="portrait" class="token" src="assets/imgs/characters/{{character.img}}" height="80" width="80px">
 <span>{{character.name}}</span>
 </div>
-<div>
-    <mat-icon>swords</mat-icon>
-    <mat-icon>shield</mat-icon>
-</div>
+<section *ngIf="isHero" class="char-options">
+    <button mat-icon-button aria-label="offensive" [ngClass]="{'active': character.status?.stance === Stance.Offensive}" (click)="changeStance(Stance.Offensive)">
+        <mat-icon fontSet="material-symbols-outlined">swords</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="deffensive" [ngClass]="{'active': character.status?.stance === Stance.Defensive}" (click)="changeStance(Stance.Defensive)">
+        <mat-icon>shield</mat-icon>
+    </button>   
+</section>
 
 <div class="dices">
 <!--<span class="dice" *ngFor="let dice of character.dices">
@@ -18,5 +22,6 @@
 <mat-icon class="💥" *ngIf="dice==='💥'">bolt</mat-icon>
 <mat-icon class="💀" *ngIf="dice==='💀'">radio_button_checked</mat-icon>
 </span>-->
+<mat-icon fontSet="material-symbols-outlined">sentiment_satisfied</mat-icon>
 </div>
 </mat-card>

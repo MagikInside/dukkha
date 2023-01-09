@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { combineLatest, map, Observable } from 'rxjs';
 import { Character } from '../models/character.model';
+import { Stance } from '../models/stance.model';
 import { HeroesService } from '../services/heroes.service';
 import { MonstersService } from '../services/monsters.service';
 import { StateService } from '../services/state.service';
@@ -17,13 +18,16 @@ export class FightComponent implements OnInit {
 
   constructor(private heroesService: HeroesService, private stateService: StateService, private monstersService: MonstersService) {
     this.selectedHeroes$ = combineLatest([this.heroesService.heroes$, this.stateService.selectedHeroesStatus$]).pipe(
-      map(([heroes,selectedCharsIds]) => {
-        return heroes.filter(character => selectedCharsIds.some(status => status.id === character.id));
+      map(([heroes, selectedHeroesStatus]) => heroes.filter(character => selectedHeroesStatus.some(status => status.id === character.id)).map(heroe => {
+          return {...heroe, status: selectedHeroesStatus.find(status => status.id === heroe.id) };
+        
       })
-    );
-    this.monsters$ = this.monstersService.monsters$;
+    ));
+    this.monsters$ = this.monstersService.monsters$;    
+  }
 
-    
+  onStanceChange(stance: Stance, id: string) {
+    this.stateService.updateStance(id, stance);
   }
 
   ngOnInit(): void {

@@ -1,3 +1,5 @@
+import { Status } from "./status.model";
+
 export interface Character {
   id: string;
   name: string;
@@ -5,6 +7,7 @@ export interface Character {
   attack: number;
   defense: number;
   points: number;
-  alliance?: string;
-  active?: boolean;
+  alliance: string;
+  active?: boolean
+  status?: Status;
 }
