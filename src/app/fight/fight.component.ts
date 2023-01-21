@@ -18,12 +18,7 @@ export class FightComponent implements OnInit {
   monsters$: Observable<Character[]>;
 
   constructor(private heroesService: HeroesService, private stateService: StateService, private monstersService: MonstersService, private fightService: FightService) {
-    this.selectedHeroes$ = combineLatest([this.heroesService.heroes$, this.stateService.selectedHeroesStatus$]).pipe(
-      map(([heroes, selectedHeroesStatus]) => heroes.filter(character => selectedHeroesStatus.some(status => status.id === character.id)).map(heroe => {
-          return {...heroe, status: selectedHeroesStatus.find(status => status.id === heroe.id) };
-        
-      })
-    ));
+    this.selectedHeroes$ = this.heroesService.selectedHeroes$;
     this.monsters$ = this.monstersService.monsters$;
   }
 

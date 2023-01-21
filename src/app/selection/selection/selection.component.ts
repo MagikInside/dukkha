@@ -14,7 +14,6 @@ export class SelectionComponent implements OnInit {
 
   heroes$: Observable<Character[]>;
   displayedHeroe: Character | null = null;
-  selectedHeroesIds$: Observable<string[]>;
   selectedHeroes$: Observable<Character[]>;
 
   selectedPoints = 0;
@@ -25,12 +24,7 @@ export class SelectionComponent implements OnInit {
 
   constructor(private heroesService: HeroesService, private stateService: StateService, private snackBar: MatSnackBar) {
     this.heroes$ = heroesService.heroes$;
-    this.selectedHeroesIds$ = stateService.selectedHeroesStatus$.pipe(map(status => status.map(status => status.id)));
-    this.selectedHeroes$ = combineLatest([this.heroes$, this.selectedHeroesIds$]).pipe(
-      map(([heroes, selectedHeroesIds]) => {
-        return heroes.filter(heroe => selectedHeroesIds.includes(heroe.id));
-      })
-    );
+    this.selectedHeroes$ = this.heroesService.selectedHeroes$;
   }
 
   ngOnInit(): void {

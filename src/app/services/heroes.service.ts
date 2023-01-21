@@ -1,8 +1,9 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {Character} from '../models/character.model';
+import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import {debounceTime, tap} from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Character } from '../models/character.model';
+import { StateService } from './state.service';
 
 
 @Injectable({
@@ -12,15 +13,25 @@ export class HeroesService {
   
   private heroesCollection: AngularFirestoreCollection<Character>;
   
-  constructor(private readonly afs: AngularFirestore) {
+  constructor(private readonly afs: AngularFirestore, private stateService: StateService) {
     this.heroesCollection = afs.collection<Character>('heroes');
   }
   
-  get heroes$(): Observable<Character[]> {
-    return this.heroesCollection.valueChanges({ idField: 'id' }).pipe(
-      debounceTime(200),
-      );
+  get selectedHeroes$(): Observable<Character[]> {
+    return combineLatest([this.heroesCollection.valueChanges({ idField: 'id' }), this.stateService.selectedHeroesStatus$]).pipe(
+      map(([heroes, heroesStatus]) => {
+        return heroes
+        .filter(heroe => heroesStatus.some(status => status.id === heroe.id))
+        .map(heroe => {
+        return {...heroe, status: heroesStatus.find(status => status.id === heroe.id) };
+      })
+    }));
     }
+
+    get heroes$(): Observable<Character[]> {
+      return this.heroesCollection.valueChanges({ idField: 'id' });
+      }
+
     
     set heroes(heroes: Character[]) {
       heroes

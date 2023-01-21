@@ -1,12 +1,12 @@
-import {Injectable} from '@angular/core';
-import {combineLatest, Observable} from 'rxjs';
-import {Character} from '../models/character.model';
+import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import {debounceTime, map, tap} from 'rxjs/operators';
-import { StateService } from './state.service';
+import { combineLatest, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { Character } from '../models/character.model';
 import { Condition } from '../models/condition.enum';
 import { Stance } from '../models/stance.model';
 import { Status } from '../models/status.model';
+import { StateService } from './state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,6 @@ export class MonstersService {
         return {...monster, status: monstersStatus.find(status => status.id === monster.id) };
       })
     }),
-      debounceTime(200)
     );
     }
 

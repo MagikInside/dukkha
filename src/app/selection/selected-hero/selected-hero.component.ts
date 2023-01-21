@@ -9,16 +9,16 @@ import { Character } from 'src/app/models/character.model';
 export class SelectedHeroeComponent implements OnInit, OnChanges {
 
   @Input() heroe: Character | null = null;
-  @Input() selectedHeroesIds: string[] | null = null;
+  @Input() selectedHeroes: Character[] | null = null;
   @Output() selectHeroe = new EventEmitter<boolean>();
   selected = false;
 
   ngOnInit(): void {
-    this.selected = this.selectedHeroesIds?.some(id => this.heroe?.id === id) || false;
+    this.selected = this.selectedHeroes?.some(heroe => this.heroe?.id === heroe.id) || false;
   }
   ngOnChanges({heroe}: {heroe: SimpleChange}) {
     if(heroe && heroe?.currentValue !== heroe.previousValue) {
-      this.selected = this.selectedHeroesIds?.some(id => this.heroe?.id === id) || false;
+      this.selected = this.selectedHeroes?.some(heroe => this.heroe?.id === heroe.id) || false;
     } else {
       this.selected = false;
     }
