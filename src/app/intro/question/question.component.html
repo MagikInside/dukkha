@@ -1,5 +1,7 @@
-<mat-button-toggle-group name="{{name}}" [(ngModel)]="answer" (change)="onAnswerChange($event)">
-    <mat-button-toggle *ngFor="let option of options; let index = index" [value]="index">{{option.name}}</mat-button-toggle>
-</mat-button-toggle-group>
-
-<app-description *ngIf="answer !== null && answer !== undefined && options[answer].description" [description]="options[answer].description"></app-description>
+<section>
+    <mat-button-toggle-group name="{{name}}" [(ngModel)]="answer" (change)="onAnswerChange($event)">
+        <mat-button-toggle *ngFor="let option of options; let index = index" [value]="index">{{option.name}}</mat-button-toggle>
+    </mat-button-toggle-group>
+    
+    <app-description *ngIf="answer !== null && answer !== undefined && options[answer].description" [description]="options[answer].description"></app-description>
+</section>

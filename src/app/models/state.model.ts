@@ -8,6 +8,6 @@ export interface State {
     answers: Answers;
     scrollUp: boolean;
     selectedHeroesStatus: Status[];
-    monstersStatus?: Status[];
+    monstersStatus: Status[];
     availablePoints: number;
 }

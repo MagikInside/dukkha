@@ -29,6 +29,7 @@ import { SelectedHeroeComponent } from './selection/selected-hero/selected-hero.
 import { FightComponent } from './fight/fight.component';
 import { CharacterComponent } from './fight/character/character.component';
 import { SummaryComponent } from './fight/summary/summary.component';
+import { FightPanelComponent } from './fight/fight-panel/fight-panel.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { SummaryComponent } from './fight/summary/summary.component';
     SelectedHeroeComponent,
     FightComponent,
     CharacterComponent,
-    SummaryComponent
+    SummaryComponent,
+    FightPanelComponent
   ],
   imports: [
     BrowserModule,

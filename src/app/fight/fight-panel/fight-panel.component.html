@@ -1,0 +1,8 @@
+<section class="fight-panel">
+    <section class="heroes" *ngIf="heroes?.length">
+        <app-character *ngFor="let character of heroes" [character]="character"  (stanceChange)="onStanceChange($event, character.id)"></app-character>
+    </section>
+    <section class="monsters" *ngIf="monsters?.length">
+        <app-character *ngFor="let monster of monsters" [character]="monster" [isHero]="false"></app-character>
+    </section>
+</section>
