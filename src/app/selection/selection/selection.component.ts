@@ -41,12 +41,12 @@ export class SelectionComponent implements OnInit {
   onSelectHeroe(addChar: boolean) {
     if(this.displayedHeroe) {
       if (addChar) {
-        const isMaxPoints = !this.stateService.selectCharacter(this.displayedHeroe.id, this.displayedHeroe.points);
+        const isMaxPoints = !this.stateService.selectCharacter(this.displayedHeroe.id, this.displayedHeroe.points ?? 0);
         if(isMaxPoints) {
           this.snackBar.open('Max points reached', undefined, {duration: 2000});
         }
       } else {
-        this.stateService.deselectCharacter(this.displayedHeroe.id, this.displayedHeroe.points);
+        this.stateService.deselectCharacter(this.displayedHeroe.id, this.displayedHeroe.points ?? 0);
       }
     }
   }

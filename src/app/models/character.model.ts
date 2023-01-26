@@ -6,8 +6,9 @@ export interface Character {
   img: string;
   attack: number;
   defense: number;
-  points: number;
-  alliance: string;
+  health: number;
+  points?: number;
+  alliance?: string;
   active?: boolean
-  status?: Status;
+  status: Status;
 }

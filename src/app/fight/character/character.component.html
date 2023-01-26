@@ -1,30 +1,24 @@
-<mat-card *ngIf="character" class="character" [ngClass]="{'hero': isHero, 'monster': !isHero}">
-<!--[ngClass]="{'dead': character.condition === Condition.Dead, 'injured': character.condition === Condition.Injured,
- 'critical': character.condition === Condition.Critical, 'paused': character.stop}">-->
-<div class="info">
-<img alt="portrait" class="token" src="assets/imgs/characters/{{character.img}}" height="80" width="80px">
-<span>{{character.name}}</span>
-</div>
-<section *ngIf="isHero" class="char-options">
-    <button mat-icon-button aria-label="offensive" [ngClass]="{'active': character.status?.stance === Stance.Offensive}" (click)="changeStance(Stance.Offensive)">
-        <mat-icon fontSet="material-symbols-outlined">swords</mat-icon>
-    </button>
-    <button mat-icon-button aria-label="deffensive" [ngClass]="{'active': character.status?.stance === Stance.Defensive}" (click)="changeStance(Stance.Defensive)">
-        <mat-icon>shield</mat-icon>
-    </button>   
-</section>
-
-<div class="dices">
-<!--<span class="dice" *ngFor="let dice of character.dices">
-<mat-icon class="❌"  *ngIf="dice==='❌'">close</mat-icon>
-<mat-icon class="✅" *ngIf="dice==='✅'">check</mat-icon>
-<mat-icon class="➖" *ngIf="dice==='➖'">unfold_less</mat-icon>
-<mat-icon class="💥" *ngIf="dice==='💥'">bolt</mat-icon>
-<mat-icon class="💀" *ngIf="dice==='💀'">radio_button_checked</mat-icon>
-</span>-->
-
-</div>
-<section>
-    <mat-icon fontSet="material-symbols-outlined">sentiment_satisfied</mat-icon>
-</section>
-</mat-card>
+<mat-card *ngIf="character" class="character" [ngClass]="{'hero': isHero, 'monster': !isHero, 'dead': character.status.condition === Condition.Dead}">
+    <!--[ngClass]="{'dead': character.condition === Condition.Dead, 'injured': character.condition === Condition.Injured,
+        'critical': character.condition === Condition.Critical, 'paused': character.stop}">-->
+        <div class="info">
+            <img alt="portrait" class="token" src="assets/imgs/characters/{{character.img}}" height="80" width="80px">
+            <span>{{character.name}}</span>
+        </div>
+        <section *ngIf="isHero" class="char-options">
+            <button mat-icon-button aria-label="offensive" [ngClass]="{'active': character.status?.stance === Stance.Offensive}" (click)="changeStance(Stance.Offensive)">
+                <mat-icon fontSet="material-symbols-outlined">swords</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="deffensive" [ngClass]="{'active': character.status?.stance === Stance.Defensive}" (click)="changeStance(Stance.Defensive)">
+                <mat-icon>shield</mat-icon>
+            </button>   
+        </section>
+        
+        <app-health [health]="character.health" [wounds]="character.status.wounds"></app-health>
+        <section>
+            <mat-icon *ngIf="character.status.condition === Condition.Ok"  fontSet="material-symbols-outlined">sentiment_satisfied</mat-icon>
+            <mat-icon *ngIf="character.status.condition === Condition.Injured"  fontSet="material-symbols-outlined">sentiment_neutral</mat-icon>
+            <mat-icon *ngIf="character.status.condition === Condition.Critical"  fontSet="material-symbols-outlined">sentiment_dissatisfied</mat-icon>
+            <mat-icon *ngIf="character.status.condition === Condition.Dead"  fontSet="material-symbols-outlined">skull</mat-icon>
+        </section>
+    </mat-card>

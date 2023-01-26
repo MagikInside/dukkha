@@ -3,7 +3,7 @@ import { Stance } from "./stance.model";
 
 export interface Status {
     id: string;
-    results: string[];
+    wounds: number;
     condition: Condition;
     stance: Stance;
   }

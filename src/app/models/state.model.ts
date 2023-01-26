@@ -1,4 +1,5 @@
 import { Answers } from "./answers.model";
+import { RoundInfo } from "./round-info.model";
 import { Status } from "./status.model";
 import { User } from "./user.model";
 
@@ -10,4 +11,5 @@ export interface State {
     selectedHeroesStatus: Status[];
     monstersStatus: Status[];
     availablePoints: number;
+    roundInfo: RoundInfo
 }

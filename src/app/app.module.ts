@@ -30,6 +30,7 @@ import { FightComponent } from './fight/fight.component';
 import { CharacterComponent } from './fight/character/character.component';
 import { SummaryComponent } from './fight/summary/summary.component';
 import { FightPanelComponent } from './fight/fight-panel/fight-panel.component';
+import { HealthComponent } from './fight/health/health.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { FightPanelComponent } from './fight/fight-panel/fight-panel.component';
     FightComponent,
     CharacterComponent,
     SummaryComponent,
-    FightPanelComponent
+    FightPanelComponent,
+    HealthComponent
   ],
   imports: [
     BrowserModule,

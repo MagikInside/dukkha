@@ -4,7 +4,7 @@
         <mat-icon>casino_outlined</mat-icon>
       </div>
       <div class="number">
-        <span class="amount">{{summary?.round}}</span>
+        <span class="amount">{{roundInfo?.round}}</span>
         <span class="unit">rounds</span>
       </div>
     </section>
@@ -13,8 +13,8 @@
         <mat-icon>check_circle</mat-icon>
       </div>
       <div class="number">
-        <span class="amount">{{summary?.lastSuccs}}</span>
-        <span class="unit">successes</span>
+        <span class="amount">{{roundInfo?.impacts}}</span>
+        <span class="unit">impacts</span>
       </div>
     </section>
     <section class="info last-fails">
@@ -22,17 +22,17 @@
         <mat-icon>cancel</mat-icon>
       </div>
       <div class="number">
-        <span class="amount">{{summary?.lastFails}}</span>
-        <span class="unit">fails</span>
+        <span class="amount">{{roundInfo?.wounds}}</span>
+        <span class="unit">wounds</span>
       </div>
     </section>
     <section class="info total-info">
       <div class="total">
         <div class="succs">
-          <span>{{summary?.totalSuccs}}<mat-icon>check</mat-icon></span>
+          <span>{{roundInfo?.totalImpacts}}<mat-icon>check</mat-icon></span>
         </div>
         <div class="fails">
-          <span>{{summary?.totalFails}}<mat-icon>close</mat-icon></span>
+          <span>{{roundInfo?.totalWounds}}<mat-icon>close</mat-icon></span>
         </div>
       </div>
         <div class="unit">total</div>

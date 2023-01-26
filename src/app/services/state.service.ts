@@ -9,25 +9,30 @@ import { Status } from "../models/status.model";
 import { Condition } from "../models/condition.enum";
 import { Stance } from "../models/stance.model";
 import { Character } from "../models/character.model";
+import { RoundInfo } from "../models/round-info.model";
 
 
-
-let _state: State = {
-  step: -1, answers: [], scrollUp: false, selectedHeroesStatus: [], monstersStatus: [], availablePoints: 6
-}
+const initalRoundInfo: RoundInfo = { round: 0, impacts: 0, wounds: 0, totalImpacts: 0, totalWounds: 0 }
 
 @Injectable({
     providedIn: 'root'
   })
 export class StateService {
 
-    private store = new BehaviorSubject<State>(_state);
+    private store = new BehaviorSubject<State>({
+      step: -1, answers: [], 
+      scrollUp: false, 
+      selectedHeroesStatus: [],
+      monstersStatus: [],
+      availablePoints: 8,
+      roundInfo : initalRoundInfo
+    });
     public state$ = this.store.asObservable();
 
     public user$ = this.state$.pipe(map(state => state.user), filter(user => !!user) as OperatorFunction<User | undefined, User>, distinctUntilChanged());
     public selectedHeroesStatus$ = this.state$.pipe(map(state => state.selectedHeroesStatus),  filter(selectedChars => !!selectedChars) as OperatorFunction<Status[] | undefined, Status[]>, distinctUntilChanged());
     public monstersStatus$ = this.state$.pipe(map(state => state.monstersStatus),  filter(monstersStatus => !!monstersStatus) as OperatorFunction<Status[] | undefined, Status[]>, distinctUntilChanged());
-
+    public roundInfo$ = this.state$.pipe(map(state => state.roundInfo), distinctUntilChanged());
 
       constructor(private readonly afs: AngularFirestore, private userService: UserService) {
         this.userService.user$.pipe(
@@ -36,7 +41,7 @@ export class StateService {
             return this.afs.doc<State>('states/' + user.uid).valueChanges().pipe(
               tap(state => {
                   if (!state) {
-                this.afs.collection<State>('states').doc(user.uid).set({ user: {name: user.displayName, uid: user.uid}, step: 0, answers: [], scrollUp: false,  selectedHeroesStatus: [], monstersStatus: [], availablePoints: 6 });
+                this.afs.collection<State>('states').doc(user.uid).set({ user: {name: user.displayName, uid: user.uid}, step: 0, answers: [], scrollUp: false,  selectedHeroesStatus: [], monstersStatus: [], availablePoints: 8, roundInfo : initalRoundInfo });
                 }
               }));
           } else {
@@ -44,7 +49,7 @@ export class StateService {
           }
       }),
       filter(state => state !== undefined) as OperatorFunction<State | undefined, State>
-      ).subscribe(state => this.store.next(_state = state));
+      ).subscribe(state => this.store.next(state));
       }
 
       incrementStep(step: number) {
@@ -60,14 +65,15 @@ export class StateService {
       }
 
       selectCharacter( selectedCharacterId: string, points: number): boolean {
-        if (!_state.selectedHeroesStatus.some(status => status.id === selectedCharacterId)) {
-          if(_state.availablePoints - points >= 0) {
-            this.afs.collection<State>('states').doc(this.userService.user?.uid).update({ selectedHeroesStatus: [..._state.selectedHeroesStatus, {
+        const state = this.store.getValue();
+        if (!state.selectedHeroesStatus.some(status => status.id === selectedCharacterId)) {
+          if(state.availablePoints - points >= 0) {
+            this.afs.collection<State>('states').doc(this.userService.user?.uid).update({ selectedHeroesStatus: [...state.selectedHeroesStatus, {
               id: selectedCharacterId,
-              results: [],
+              wounds: 0,
               condition: Condition.Ok,
               stance: Stance.Defensive,
-            }], availablePoints: _state.availablePoints - points, scrollUp: false });
+            }], availablePoints: state.availablePoints - points, scrollUp: false });
             return true;
           } else {
             return false;
@@ -77,16 +83,18 @@ export class StateService {
       }
 
       deselectCharacter( selectedCharacterId: string, points: number) {
-        const newSelectedHeroesStatus = _state.selectedHeroesStatus.filter(status => status.id !== selectedCharacterId);
-        if (newSelectedHeroesStatus.length !== _state.selectedHeroesStatus.length) {
-          this.afs.collection<State>('states').doc(this.userService.user?.uid).update({ selectedHeroesStatus: newSelectedHeroesStatus, availablePoints: _state.availablePoints + points, scrollUp: false });  
+        const state = this.store.getValue();
+        const newSelectedHeroesStatus = state.selectedHeroesStatus.filter(status => status.id !== selectedCharacterId);
+        if (newSelectedHeroesStatus.length !== state.selectedHeroesStatus.length) {
+          this.afs.collection<State>('states').doc(this.userService.user?.uid).update({ selectedHeroesStatus: newSelectedHeroesStatus, availablePoints: state.availablePoints + points, scrollUp: false });  
         }        
       }
 
       updateStance(selectedCharacterId: string, stance: Stance) {
-        const charStatusIndex = _state.selectedHeroesStatus.findIndex(status => status.id === selectedCharacterId);
-        const newCharStatus = {..._state.selectedHeroesStatus[charStatusIndex], stance }
-        const newSelectedHeroesStatus = [..._state.selectedHeroesStatus.slice(0, charStatusIndex), newCharStatus, ..._state.selectedHeroesStatus.slice(charStatusIndex +1)  ]
+        const state = this.store.getValue();
+        const charStatusIndex = state.selectedHeroesStatus.findIndex(status => status.id === selectedCharacterId);
+        const newCharStatus = {...state.selectedHeroesStatus[charStatusIndex], stance }
+        const newSelectedHeroesStatus = [...state.selectedHeroesStatus.slice(0, charStatusIndex), newCharStatus, ...state.selectedHeroesStatus.slice(charStatusIndex +1)  ]
         this.afs.collection<State>('states').doc(this.userService.user?.uid).update({ selectedHeroesStatus: newSelectedHeroesStatus  });  
 
       }
@@ -99,4 +107,13 @@ export class StateService {
         return this.store.getValue()
       }
 
+      updateRound(impacts: number, wounds: number, heroesStatus: Status[], monstersStatus: Status[]) {
+        const state = this.store.getValue();
+        console.log(impacts, wounds, heroesStatus, monstersStatus);
+        const newRoundInfo = {round: state.roundInfo.round + 1, impacts, wounds, totalImpacts: state.roundInfo.totalImpacts + impacts, totalWounds: state.roundInfo.totalWounds + wounds };
+        const newHeroesStatus = state.selectedHeroesStatus.map(heroe => heroesStatus.find(h => h.id === heroe.id) ?? heroe) ;
+        const newMonstersStatus = state.monstersStatus.map(monster=> monstersStatus.find(m => m.id ===  monster.id) ?? monster) ;
+        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({  roundInfo: newRoundInfo, selectedHeroesStatus: newHeroesStatus, monstersStatus: newMonstersStatus });  
+      }
+      
   }

@@ -13,8 +13,9 @@ import { StateService } from './state.service';
 })
 export class MonstersService {
 
-
+  monsters: Character[] | null = null;
   private monstersCollection: AngularFirestoreCollection<Character>;
+  private readonly EMPTY_STATUS = { id: '', wounds: 0, condition: Condition.Ok, stance: Stance.Offensive};
 
   constructor(private readonly afs: AngularFirestore, private stateService: StateService) {
     this.monstersCollection =  afs.collection<Character>('monsters');
@@ -30,9 +31,10 @@ export class MonstersService {
       }),
       map(([monsters, monstersStatus]) => {
         return monsters.map(monster => {
-        return {...monster, status: monstersStatus.find(status => status.id === monster.id) };
+        return {...monster, status: monstersStatus.find(status => status.id === monster.id) ?? this.EMPTY_STATUS };
       })
     }),
+    tap(monsters => this.monsters = monsters)
     );
     }
 
@@ -40,7 +42,7 @@ export class MonstersService {
       return monsters.map(monster => {
         return {
           id: monster.id,
-          results: [],
+          wounds: 0,
           condition: Condition.Ok,
           stance: Stance.Offensive
         };

@@ -12,7 +12,6 @@ export class FightPanelComponent {
   @Input() heroes: Character[] | null = null;
   @Input() monsters: Character[] | null = null;
 
-
   constructor(private stateService: StateService) {
   }
 

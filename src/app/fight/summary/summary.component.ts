@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Summary } from '../../models/summary.model';
+import { RoundInfo } from 'src/app/models/round-info.model';
+
 
 @Component({
   selector: 'app-summary',
@@ -8,7 +9,7 @@ import { Summary } from '../../models/summary.model';
 })
 export class SummaryComponent implements OnInit {
 
-  @Input() summary: Summary | null = {round: 2, lastSuccs: 3, lastFails: 2, totalSuccs: 12, totalFails: 10} ;
+  @Input() roundInfo: RoundInfo | null = null;
 
   constructor() { }
 

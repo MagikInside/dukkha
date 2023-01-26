@@ -1,6 +1,6 @@
 <div class="fight">
     <h1>Fight!</h1>
-    <app-summary></app-summary>
+    <app-summary [roundInfo]="roundInfo$ | async"></app-summary>
     <app-fight-panel [heroes]="selectedHeroes$ | async" [monsters]="monsters$ | async"></app-fight-panel>
     <button mat-raised-button (click)="fight()">Fight</button>
 </div>

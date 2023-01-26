@@ -1,0 +1,7 @@
+<section class="health">
+    <ng-container *ngFor="let heart of healthArray">
+        <mat-icon *ngIf="heart==='♥'" >favorite</mat-icon>
+        <mat-icon class="wound" *ngIf="heart==='💔'">heart_broken</mat-icon>
+    </ng-container>
+    
+</section>
