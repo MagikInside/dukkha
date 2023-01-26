@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges } from '@angular/core';
 import { Character } from 'src/app/models/character.model';
 
 @Component({
@@ -16,8 +16,8 @@ export class SelectedHeroeComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.selected = this.selectedHeroes?.some(heroe => this.heroe?.id === heroe.id) || false;
   }
-  ngOnChanges({heroe}: {heroe: SimpleChange}) {
-    if(heroe && heroe?.currentValue !== heroe.previousValue) {
+  ngOnChanges({heroe, selectedHeroes}: SimpleChanges) {
+    if((heroe && heroe?.currentValue !== heroe.previousValue) || (selectedHeroes.currentValue !== selectedHeroes.previousValue)) {
       this.selected = this.selectedHeroes?.some(heroe => this.heroe?.id === heroe.id) || false;
     } else {
       this.selected = false;
