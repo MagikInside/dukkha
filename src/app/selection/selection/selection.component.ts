@@ -18,10 +18,6 @@ export class SelectionComponent implements OnInit {
 
   selectedPoints = 0;
 
-  phase = {
-    maxPoints: 5
-  }
-
   constructor(private heroesService: HeroesService, private stateService: StateService, private snackBar: MatSnackBar) {
     this.heroes$ = heroesService.heroes$;
     this.selectedHeroes$ = this.heroesService.selectedHeroes$;

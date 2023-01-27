@@ -24,7 +24,6 @@ export class SelectedHeroeComponent implements OnInit, OnChanges {
     }
   }
     
-
   select(addHeroe: boolean) {
     this.selectHeroe.emit(addHeroe);
 }

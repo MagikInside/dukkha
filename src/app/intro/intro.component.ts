@@ -18,6 +18,7 @@ export class IntroComponent implements OnInit {
   user$: Observable<User>;
   state$: Observable<State | undefined>;
   canContinue: boolean = false;
+  fightVictory$: Observable<boolean | null>;
 
   
   constructor(private userService: UserService, private stateService: StateService, private router: Router, private validationService: ValidationService) { 
@@ -30,6 +31,7 @@ export class IntroComponent implements OnInit {
         this.canContinue = this.validationService.canContinue(state.answers, state.step);
       })
     );
+    this.fightVictory$ = this.stateService.fightVictory$;
   }
   
   ngOnInit(): void {
@@ -40,7 +42,6 @@ export class IntroComponent implements OnInit {
       this.router.navigate(['selection']);
     } else {
     this.stateService.incrementStep(step);
-  
     }
   }
 

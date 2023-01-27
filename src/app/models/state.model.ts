@@ -11,5 +11,6 @@ export interface State {
     selectedHeroesStatus: Status[];
     monstersStatus: Status[];
     availablePoints: number;
-    roundInfo: RoundInfo
+    roundInfo: RoundInfo,
+    fightVictory: boolean | null;
 }

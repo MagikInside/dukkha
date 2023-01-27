@@ -41,7 +41,6 @@ export class HeroesService {
     
     set heroes(heroes: Character[]) {
       heroes
-      // .filter(hero => !hero.stop && hero.condition !== 'dead')
       .forEach((hero) => {
         this.heroesCollection.doc(hero.id).update(hero);
       });

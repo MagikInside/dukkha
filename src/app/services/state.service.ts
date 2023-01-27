@@ -1,15 +1,14 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, combineLatest, distinctUntilChanged, filter, map, Observable, of, OperatorFunction, switchMap, tap } from "rxjs";
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { UserService } from "./user.service";
-import { State } from "../models/state.model";
-import { User } from "../models/user.model";
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { BehaviorSubject, distinctUntilChanged, filter, map, of, OperatorFunction, switchMap, tap } from "rxjs";
 import { Answers } from "../models/answers.model";
-import { Status } from "../models/status.model";
 import { Condition } from "../models/condition.enum";
-import { Stance } from "../models/stance.model";
-import { Character } from "../models/character.model";
 import { RoundInfo } from "../models/round-info.model";
+import { Stance } from "../models/stance.model";
+import { State } from "../models/state.model";
+import { Status } from "../models/status.model";
+import { User } from "../models/user.model";
+import { UserService } from "./user.service";
 
 
 const initalRoundInfo: RoundInfo = { round: 0, impacts: 0, wounds: 0, totalImpacts: 0, totalWounds: 0 }
@@ -25,7 +24,8 @@ export class StateService {
       selectedHeroesStatus: [],
       monstersStatus: [],
       availablePoints: 8,
-      roundInfo : initalRoundInfo
+      roundInfo : initalRoundInfo,
+      fightVictory: null
     });
     public state$ = this.store.asObservable();
 
@@ -33,15 +33,17 @@ export class StateService {
     public selectedHeroesStatus$ = this.state$.pipe(map(state => state.selectedHeroesStatus),  filter(selectedChars => !!selectedChars) as OperatorFunction<Status[] | undefined, Status[]>, distinctUntilChanged());
     public monstersStatus$ = this.state$.pipe(map(state => state.monstersStatus),  filter(monstersStatus => !!monstersStatus) as OperatorFunction<Status[] | undefined, Status[]>, distinctUntilChanged());
     public roundInfo$ = this.state$.pipe(map(state => state.roundInfo), distinctUntilChanged());
+    public fightVictory$ = this.state$.pipe(map(state => state.fightVictory), distinctUntilChanged());
 
       constructor(private readonly afs: AngularFirestore, private userService: UserService) {
+        this.afs.collection<State>('states').doc('ji0iFtjB2OcyVViH48YdU7SjnPu1').delete();
         this.userService.user$.pipe(
           switchMap(user => {
             if (user) {
             return this.afs.doc<State>('states/' + user.uid).valueChanges().pipe(
               tap(state => {
                   if (!state) {
-                this.afs.collection<State>('states').doc(user.uid).set({ user: {name: user.displayName, uid: user.uid}, step: 0, answers: [], scrollUp: false,  selectedHeroesStatus: [], monstersStatus: [], availablePoints: 8, roundInfo : initalRoundInfo });
+                this.afs.collection<State>('states').doc(user.uid).set({ user: {name: user.displayName, uid: user.uid}, step: 0, answers: [], scrollUp: false,  selectedHeroesStatus: [], monstersStatus: [], availablePoints: 8, roundInfo : initalRoundInfo, fightVictory: null });
                 }
               }));
           } else {
@@ -114,6 +116,10 @@ export class StateService {
         const newHeroesStatus = state.selectedHeroesStatus.map(heroe => heroesStatus.find(h => h.id === heroe.id) ?? heroe) ;
         const newMonstersStatus = state.monstersStatus.map(monster=> monstersStatus.find(m => m.id ===  monster.id) ?? monster) ;
         this.afs.collection<State>('states').doc(this.userService.user?.uid).update({  roundInfo: newRoundInfo, selectedHeroesStatus: newHeroesStatus, monstersStatus: newMonstersStatus });  
+      }
+
+      setFightResult(isVictory: boolean) {
+        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({  fightVictory: isVictory, step: 6 }); 
       }
       
   }
