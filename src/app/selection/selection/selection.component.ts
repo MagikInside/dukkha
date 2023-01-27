@@ -15,12 +15,14 @@ export class SelectionComponent implements OnInit {
   heroes$: Observable<Character[]>;
   displayedHeroe: Character | null = null;
   selectedHeroes$: Observable<Character[]>;
+  availablePoints$: Observable<number>;
 
   selectedPoints = 0;
 
   constructor(private heroesService: HeroesService, private stateService: StateService, private snackBar: MatSnackBar) {
     this.heroes$ = heroesService.heroes$;
     this.selectedHeroes$ = this.heroesService.selectedHeroes$;
+    this.availablePoints$ = this.stateService.availablePoints$;
   }
 
   ngOnInit(): void {

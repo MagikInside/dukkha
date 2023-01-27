@@ -23,7 +23,7 @@ export class StateService {
       scrollUp: false, 
       selectedHeroesStatus: [],
       monstersStatus: [],
-      availablePoints: 8,
+      availablePoints: 12,
       roundInfo : initalRoundInfo,
       fightVictory: null
     });
@@ -34,6 +34,7 @@ export class StateService {
     public monstersStatus$ = this.state$.pipe(map(state => state.monstersStatus),  filter(monstersStatus => !!monstersStatus) as OperatorFunction<Status[] | undefined, Status[]>, distinctUntilChanged());
     public roundInfo$ = this.state$.pipe(map(state => state.roundInfo), distinctUntilChanged());
     public fightVictory$ = this.state$.pipe(map(state => state.fightVictory), distinctUntilChanged());
+    public availablePoints$ = this.state$.pipe(map(state => state.availablePoints), distinctUntilChanged());
 
       constructor(private readonly afs: AngularFirestore, private userService: UserService) {
         this.afs.collection<State>('states').doc('ji0iFtjB2OcyVViH48YdU7SjnPu1').delete();
@@ -43,7 +44,7 @@ export class StateService {
             return this.afs.doc<State>('states/' + user.uid).valueChanges().pipe(
               tap(state => {
                   if (!state) {
-                this.afs.collection<State>('states').doc(user.uid).set({ user: {name: user.displayName, uid: user.uid}, step: 0, answers: [], scrollUp: false,  selectedHeroesStatus: [], monstersStatus: [], availablePoints: 8, roundInfo : initalRoundInfo, fightVictory: null });
+                this.afs.collection<State>('states').doc(user.uid).set({ user: {name: user.displayName, uid: user.uid}, step: 0, answers: [], scrollUp: false,  selectedHeroesStatus: [], monstersStatus: [], availablePoints: 12, roundInfo : initalRoundInfo, fightVictory: null });
                 }
               }));
           } else {

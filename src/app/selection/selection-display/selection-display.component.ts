@@ -11,6 +11,6 @@ export class SelectionDisplayComponent {
   @Input() hero: Character | null = null;
   @Input() selectedHeroes: Character[] | null = [];
 
-  @Input() selectedPoints = 0;
+  @Input() selectedPoints: number | null = 0;
 
 }

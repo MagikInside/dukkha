@@ -3,6 +3,6 @@
   <ng-container *ngIf="heroes$ | async as heroes">
     <app-heroes-display (displayHeroe)="onDisplayHeroe($event)" [heroes]="heroes"></app-heroes-display>
     <app-selected-heroe *ngIf="displayedHeroe" (selectHeroe)="onSelectHeroe($event)" [heroe]="displayedHeroe" [selectedHeroes]="selectedHeroes$ | async"></app-selected-heroe>
-    <app-selection-display [selectedHeroes]="selectedHeroes$ | async" [selectedPoints]="8"></app-selection-display>
+    <app-selection-display [selectedHeroes]="selectedHeroes$ | async" [selectedPoints]="availablePoints$ | async"></app-selection-display>
   </ng-container>
 </div>
