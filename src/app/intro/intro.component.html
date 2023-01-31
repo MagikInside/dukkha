@@ -5,5 +5,5 @@
     <app-fight *ngIf="state.step === 5"></app-fight>
     <app-fight-result *ngIf="state.step === 6" [fightVictory]="fightVictory$ | async"></app-fight-result>
     <app-conclusion *ngIf="state.step === 7"></app-conclusion>
-    <button *ngIf="state.step > -1" mat-raised-button (click)="next(state.step)" [disabled]="!canContinue">{{state.step === 0 ? 'start' : state.step === 4 ? 'fight' : 'continue'}}</button>
+    <button *ngIf="state.step > -1 && state.step !== 7" mat-raised-button (click)="next(state.step)" [disabled]="!canContinue">{{state.step === 0 ? 'start' : state.step === 4 ? 'fight' : 'continue'}}</button>
 </div>

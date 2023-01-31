@@ -13,4 +13,5 @@ export interface State {
     availablePoints: number;
     roundInfo: RoundInfo,
     fightVictory: boolean | null;
+    score: number;
 }

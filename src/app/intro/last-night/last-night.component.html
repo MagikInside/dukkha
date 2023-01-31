@@ -14,20 +14,36 @@
             <figure><img alt="Harbin Wester token" src="/assets/imgs/tokens/harbin.png"></figure>
             <p><mat-icon>format_quote</mat-icon>Look... "Mage"... - he said, narrowing his eyes with an almost contemptuous gesture - you must know that the leaders of the council do not listen to reason, they are not willing to listen to anyone, least of all me... but they will listen a... Mage... What the Red Star say?<mat-icon>format_quote</mat-icon></p>
         </div>
-        <p>The mystical <strong>Red Star</strong>. Only the Awake could see it. It was said that it whispered secrets to them, showed the future, revealed the truth. It was said that the Mages came into contact with it with different rituals, but nobody had taught you, what should you do?</p>
+        <p>The mystical <strong>Red Star</strong>. Only the Awake could see it. It was said that it whispered secrets to them, showed the future, revealed the truth. It was said that the Mages came into contact with it with different rituals, but nobody had taught you, what should use to reach it?</p>
         
-        <app-question [answer]="answers[0]" [name]="'focus'" [options]="questions[0]" (answerChange)="onAnswerChange($event, 0)"></app-question>
+        <app-question class="focus" [answer]="answers[0]" [name]="'focus'" [options]="questions[0]" (answerChange)="onAnswerChange($event, 0)"></app-question>
+
+        <p>Where you strength was comming from?</p>
+
+        <app-question class="focus" [answer]="answers[1]" [name]="'strength'" [options]="questions[1]" (answerChange)="onAnswerChange($event, 1)"></app-question>
         
     </ng-container>
 
 
     <ng-container *ngIf="step===2">
 
-        <p *ngIf="focus">{{focusOptions[focus].longDesc}}</p>
+        <p *ngIf="answers[0]">{{questions[0][answers[0]].longDesc}}</p>
 
         <p>Distant, fleeting and elusive a vision crosses your mind. You concentrate, trying hard not to lose it, when suddenly you find yourself standing on a small hill, all around you you can see dilapidated buildings, as far as the eye can see, burning in blue flames. The wind carries a weak sound, which you cannot hear. You refuse to lose it, and twist reality with your will, so now you can hear the whisper:</p>
-        <p><i>"And the last days will come, and the world will plunge into Dukkha, with Athelios in the day sky will marking the arrival. Find the child of the thin blood, put an end the Bearer of the Storm, and know those of the silver crown will betray you."</i></p>
+        <p><i><mat-icon>format_quote</mat-icon>And the last days will come, and the world will plunge into Dukkha, with Athelios in the day sky will marking the arrival.<mat-icon>format_quote</mat-icon></i> </p>
 
+        <p>Then the voice becomes more intense and more sinister, carrying a loud noise like a scream in the wind: </p>
+        <section class="poem">
+            <p><i><mat-icon>format_quote</mat-icon>It's the night of sorrow and lost</i></p>
+            <p><i>don't trust the black dragon</i></p>
+            <p><i>let the music hide your steps</i></p>
+            <p><i>but the crown confront the shadow<mat-icon>format_quote</mat-icon></i></p>
+        </section>
+
+        <p>The sound of the wind increases in power, to a thunderous roar, and for an instant in the shadows, illuminated by a reddish light, you catch a glimpse of a white knight and a violet sorceress facing off against a dark horned creature. </p>
+            
+        <img class="red-star" src="/assets/imgs/red-star.png" alt="Red star">
+        
         <p>You come back to yourself, still shaken and trembling with the force of the vision, the power of the words. Around you the Inner Council members mill around, their gazes questioning. Illuminating, in the sky, slowly a star of reddish light is covered by thick black clouds.</p>
 
         <p>The monsters begin to break through the defenses, they say. All around you, the leaders of the five factions await for answers.</p>
@@ -49,20 +65,20 @@
         <p>You guide the the mayor and the council members through the different decisions.</p>
 
         <p>What strategy should the factions focus their efforts on?</p>
-        <app-question [answer]="answers[1]" [name]="'strategy'" [options]="questions[1]" (answerChange)="onAnswerChange($event, 1)"></app-question>
+        <app-question [answer]="answers[2]" [name]="'strategy'" [options]="questions[2]" (answerChange)="onAnswerChange($event, 2)"></app-question>
     
-        <ng-container *ngIf="answers[1] !== undefined">
-            <p>Which faction should lead the {{questions[1][answers[1]].shortDesc}}?</p>
-            <app-question [answer]="answers[2]" [name]="'faction lead'" [options]="questions[2]" (answerChange)="onAnswerChange($event, 2)"></app-question>
-        </ng-container>
-        
         <ng-container *ngIf="answers[2] !== undefined">
-            <p>The creatures were beginning to ravage the city, which faction should stand at the vanguard confronting this creatures?</p>
+            <p>Which faction should lead the {{questions[2][answers[2]].shortDesc}}?</p>
             <app-question [answer]="answers[3]" [name]="'faction lead'" [options]="questions[3]" (answerChange)="onAnswerChange($event, 3)"></app-question>
         </ng-container>
+        
         <ng-container *ngIf="answers[3] !== undefined">
-            <p>It was impossible to protect the entire city, one of the districts had to be abandoned to their fate, which one?</p>
+            <p>The creatures were beginning to ravage the city, which faction should stand at the vanguard confronting this creatures?</p>
             <app-question [answer]="answers[4]" [name]="'faction lead'" [options]="questions[4]" (answerChange)="onAnswerChange($event, 4)"></app-question>
+        </ng-container>
+        <ng-container *ngIf="answers[4] !== undefined">
+            <p>It was impossible to protect the entire city, one of the districts had to be abandoned to their fate, which one?</p>
+            <app-question [answer]="answers[5]" [name]="'faction lead'" [options]="questions[5]" (answerChange)="onAnswerChange($event, 5)"></app-question>
         </ng-container>
     </ng-container>
     <ng-container *ngIf="step===4">
@@ -72,10 +88,10 @@
         <p>And you, accompanied by a small platoon of Red Brands, were escorted to the city hall, in the center of Phandel: from there you had access to the whole city, you had to resist.</p>
         <p>You were still very new to your powers, but releasing only small fractions here and there, burning only a little bit of your Quintessence, the square held.</p>
         
-        <p *ngIf="focus === 0">Closing your eyes for a moment in meditation, intoning a rapid psalmody and moving your hands in a circle, you suddenly conjured powerful spirits, of lightning, of the wind or of the earth, which, tearing the veil, appeared, shapeless and barely visible, and destroyed dozens of enemies, to disappear just as quickly.</p>
-        <p *ngIf="focus === 1">Clasping your hands in prayer, you intoned a quick litany to the gods, to grant you their light of justice, and extending the palm of your hand, a ray of pure light burned any monster that stood in its way.</p>
-        <p *ngIf="focus === 2">Reciting a quick incantation, as you traced the necessary runes rhythmically and precisely in the air with your hands, your eyes glowed gold as you sent forth huge flames of orange fire right and left, consuming the creatures with savage screams.</p>
-        <p *ngIf="focus === 3">Kneeling on the ground, and with a quick cut in your hand you had drawn a circle with the blood that oozed from the wound, and from that circle had emerged three terrible creatures 20 feet tall, without a head, multiple tentacular eyes and sharp claws. , who had launched themselves to tear apart the attackers.</p>
+        <p *ngIf="answers[0] === 0">Closing your eyes for a moment in meditation, intoning a rapid psalmody and moving your hands in a circle, you suddenly conjured powerful spirits, of lightning, of the wind or of the earth, which, tearing the veil, appeared, shapeless and barely visible, and destroyed dozens of enemies, to disappear just as quickly.</p>
+        <p *ngIf="answers[0] === 1">Clasping your hands in prayer, you intoned a quick litany to the gods, to grant you their light of justice, and extending the palm of your hand, a ray of pure light burned any monster that stood in its way.</p>
+        <p *ngIf="answers[0] === 2">Reciting a quick incantation, as you traced the necessary runes rhythmically and precisely in the air with your hands, your eyes glowed gold as you sent forth huge flames of orange fire right and left, consuming the creatures with savage screams.</p>
+        <p *ngIf="answers[0] === 3">Kneeling on the ground, and with a quick cut in your hand you had drawn a circle with the blood that oozed from the wound, and from that circle had emerged three terrible creatures 20 feet tall, without a head, multiple tentacular eyes and sharp claws. , who had launched themselves to tear apart the attackers.</p>
 
         <p>But there were too many, simply too many... and each one that fell was replaced by two more who stormed the square ready to fight... Soon the conclusion was so obvious that it hit you like a slap in the face:</p>
         <p><strong>Phandel was lost...</strong> </p>

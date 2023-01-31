@@ -7,6 +7,7 @@ import { State } from '../models/state.model';
 import { User } from '../models/user.model';
 import { Answers } from '../models/answers.model';
 import { ValidationService } from '../services/validation.service';
+import { ConclusionService } from '../services/conclusion.service';
 
 @Component({
   selector: 'app-intro',
@@ -21,7 +22,7 @@ export class IntroComponent implements OnInit {
   fightVictory$: Observable<boolean | null>;
 
   
-  constructor(private userService: UserService, private stateService: StateService, private router: Router, private validationService: ValidationService) { 
+  constructor(private userService: UserService, private stateService: StateService, private router: Router, private validationService: ValidationService, private conclusionService: ConclusionService) { 
     this.user$ = this.stateService.user$;
     this.state$ = this.stateService.state$.pipe(
       tap((state) => {
@@ -38,11 +39,10 @@ export class IntroComponent implements OnInit {
   }
   
   next(step: number) {
-    if(step === 5) {
-      this.router.navigate(['selection']);
-    } else {
-    this.stateService.incrementStep(step);
+    if(step === 6) {
+      this.conclusionService.setScore();
     }
+    this.stateService.incrementStep(step);
   }
 
   onAnswerChange(answers: Answers, step: number) {

@@ -1,1 +1,13 @@
-<h2>Conclusion</h2>
+<div class="conclusion"><h2>Conclusion</h2>
+<section class="scores" *ngIf="listScores$ | async as listScores">
+    <mat-card class="player" *ngFor="let player of listScores; let i = index">
+        <div class="position">{{i + 1}}</div>
+        <div class="name">
+            {{player.name}}
+            <mat-icon *ngIf="i === 0" class="star">star</mat-icon>
+        </div>
+        <div class="score">{{player.score}}</div>
+        
+    </mat-card>
+</section>
+</div>
