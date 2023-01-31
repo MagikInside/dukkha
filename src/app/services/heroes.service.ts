@@ -15,6 +15,8 @@ export class HeroesService {
   selectedHeroes: Character[] | null = null;
 
   private readonly EMPTY_STATUS = { id: '', wounds: 0, condition: Condition.Ok, stance: Stance.Offensive};
+  private readonly EMPTY_HEROE: Character = { id: '', name: '', img: '', attack: 0, defense: 0, health: 0, status: this.EMPTY_STATUS };
+
   private heroesCollection: AngularFirestoreCollection<Character>;
 
   
@@ -25,14 +27,18 @@ export class HeroesService {
   get selectedHeroes$(): Observable<Character[]> {
     return combineLatest([this.heroesCollection.valueChanges({ idField: 'id' }), this.stateService.selectedHeroesStatus$]).pipe(
       map(([heroes, heroesStatus]) => {
-        return heroes
-        .filter(heroe => heroesStatus.some(status => status.id === heroe.id))
-        .map(heroe => {
-        return {...heroe, status: heroesStatus.find(status => status.id === heroe.id) ?? this.EMPTY_STATUS };
-      });
-    }),
+        return heroesStatus.map(status => {
+          const heroe = heroes.find(heroe => status.id === heroe.id);
+          if(heroe) {
+            return {...heroe, status };
+          } else {
+            return this.EMPTY_HEROE;
+          }  
+        })
+      }),
     tap(heroes => this.selectedHeroes = heroes) 
     );
+  
     }
 
     get heroes$(): Observable<Character[]> {
