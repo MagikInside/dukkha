@@ -1,8 +1,18 @@
 <section class="fight-panel">
-    <section class="heroes" *ngIf="heroes?.length">
-        <app-character *ngFor="let character of heroes" [character]="character"  (stanceChange)="onStanceChange($event, character.id)"></app-character>
+    <section class="heroes" *ngIf="heroes?.length"  cdkDropList (cdkDropListDropped)="drop($event)" >
+        <app-character class="heroe" cdkDrag *ngFor="let character of heroes" [character]="character" (stanceChange)="onStanceChange($event, character.id)">
+            <div class="info" cdkDragHandle>
+                <img alt="portrait" class="token" src="assets/imgs/characters/{{character.img}}" height="80" width="80px">
+                <span>{{character.name}}</span>
+            </div>
+        </app-character>
     </section>
     <section class="monsters" *ngIf="monsters?.length">
-        <app-character *ngFor="let monster of monsters" [character]="monster" [isHero]="false"></app-character>
+        <app-character *ngFor="let monster of monsters" [character]="monster" [isHero]="false">
+            <div class="info" cdkDragHandle>
+                <img alt="portrait" class="token" src="assets/imgs/characters/{{monster.img}}" height="80" width="80px">
+                <span>{{monster.name}}</span>
+            </div>
+        </app-character>
     </section>
 </section>

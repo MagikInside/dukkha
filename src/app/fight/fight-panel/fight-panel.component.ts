@@ -1,3 +1,4 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, Input } from '@angular/core';
 import { Character } from 'src/app/models/character.model';
 import { Stance } from 'src/app/models/stance.model';
@@ -19,4 +20,7 @@ export class FightPanelComponent {
     this.stateService.updateStance(id, stance);
   }
   
+  drop(e:  CdkDragDrop<Character[]>) {
+    console.log('drop', e)
+  }
 }

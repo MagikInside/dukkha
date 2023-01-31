@@ -33,6 +33,8 @@ import { FightPanelComponent } from './fight/fight-panel/fight-panel.component';
 import { HealthComponent } from './fight/health/health.component';
 import { FightResultComponent } from './fight/fight-result/fight-result.component';
 import { ConclusionComponent } from './conclusion/conclusion.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 
 @NgModule({
   declarations: [
@@ -69,7 +71,8 @@ import { ConclusionComponent } from './conclusion/conclusion.component';
     AngularFireAuthGuardModule,
     AngularFirestoreModule,
     MatButtonToggleModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -118,11 +118,11 @@ export class StateService {
         const newRoundInfo = {round: state.roundInfo.round + 1, impacts, wounds, totalImpacts: state.roundInfo.totalImpacts + impacts, totalWounds: state.roundInfo.totalWounds + wounds };
         const newHeroesStatus = state.selectedHeroesStatus.map(heroe => heroesStatus.find(h => h.id === heroe.id) ?? heroe) ;
         const newMonstersStatus = state.monstersStatus.map(monster=> monstersStatus.find(m => m.id ===  monster.id) ?? monster) ;
-        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({  roundInfo: newRoundInfo, selectedHeroesStatus: newHeroesStatus, monstersStatus: newMonstersStatus });  
+        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({  roundInfo: newRoundInfo, selectedHeroesStatus: newHeroesStatus, monstersStatus: newMonstersStatus, scrollUp: false,  });  
       }
       
       setFightResult(isVictory: boolean) {
-        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({  fightVictory: isVictory, step: 6 }); 
+        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({  fightVictory: isVictory, step: 6, scrollUp: true }); 
       }
 
       setScore(score: number) {
