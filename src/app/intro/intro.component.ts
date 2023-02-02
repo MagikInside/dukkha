@@ -39,7 +39,7 @@ export class IntroComponent implements OnInit {
   }
   
   next(step: number) {
-    if(step === 6) {
+    if(step === 7) {
       this.conclusionService.setScore();
     }
     this.stateService.incrementStep(step);

@@ -1,7 +1,9 @@
+import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, distinctUntilChanged, filter, map, of, OperatorFunction, switchMap, tap } from "rxjs";
 import { Answers } from "../models/answers.model";
+import { Character } from "../models/character.model";
 import { Condition } from "../models/condition.enum";
 import { RoundInfo } from "../models/round-info.model";
 import { Stance } from "../models/stance.model";
@@ -122,11 +124,18 @@ export class StateService {
       }
       
       setFightResult(isVictory: boolean) {
-        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({  fightVictory: isVictory, step: 6, scrollUp: true }); 
+        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({  fightVictory: isVictory, step: 7, scrollUp: true }); 
       }
 
       setScore(score: number) {
         this.afs.collection<State>('states').doc(this.userService.user?.uid).update({  score }); 
+      }
+
+      changeHeroesOrder(event: CdkDragDrop<Character[]>){
+        const selectedHeroesStatus = this.store.getValue().selectedHeroesStatus;
+        const newOrderHeroes = [...selectedHeroesStatus];
+        moveItemInArray(newOrderHeroes, event.previousIndex, event.currentIndex);
+        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({  selectedHeroesStatus: newOrderHeroes });
       }
       
     }

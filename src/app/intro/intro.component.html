@@ -1,9 +1,9 @@
 <div class="intro" *ngIf="state$ | async as state">
     <app-prolog *ngIf="state.step === 0" [user]="user$ | async"></app-prolog>
-    <app-last-night *ngIf="state.step > 0 && state.step < 4" [step]="state.step" [answers]="state.answers" (answerChange)="onAnswerChange($event, state.step)"></app-last-night>
-    <app-selection  *ngIf="state.step === 4"></app-selection>
-    <app-fight *ngIf="state.step === 5"></app-fight>
-    <app-fight-result *ngIf="state.step === 6" [fightVictory]="fightVictory$ | async"></app-fight-result>
-    <app-conclusion *ngIf="state.step === 7"></app-conclusion>
-    <button *ngIf="state.step > -1 && state.step !== 7" mat-raised-button (click)="next(state.step)" [disabled]="!canContinue">{{state.step === 0 ? 'start' : state.step === 4 ? 'fight' : 'continue'}}</button>
+    <app-last-night *ngIf="state.step > 0 && state.step < 5" [step]="state.step" [answers]="state.answers" (answerChange)="onAnswerChange($event, state.step)"></app-last-night>
+    <app-selection  *ngIf="state.step === 5"></app-selection>
+    <app-fight *ngIf="state.step === 6"></app-fight>
+    <app-fight-result *ngIf="state.step === 7" [fightVictory]="fightVictory$ | async"></app-fight-result>
+    <app-conclusion *ngIf="state.step === 8"></app-conclusion>
+    <button *ngIf="state.step > -1 && state.step !== 8" mat-raised-button (click)="next(state.step)" [disabled]="!canContinue">{{state.step === 0 ? 'start' : state.step === 5 ? 'fight' : 'continue'}}</button>
 </div>

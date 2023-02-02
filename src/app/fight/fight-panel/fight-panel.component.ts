@@ -20,7 +20,7 @@ export class FightPanelComponent {
     this.stateService.updateStance(id, stance);
   }
   
-  drop(e:  CdkDragDrop<Character[]>) {
-    console.log('drop', e)
+  drop(event:  CdkDragDrop<Character[]>) {
+    this.stateService.changeHeroesOrder(event)
   }
 }

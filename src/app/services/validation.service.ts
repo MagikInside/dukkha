@@ -17,7 +17,10 @@ export class ValidationService {
     else if(step === 4) {
       return true;
     }
-    else if(step === 6) {
+    else if(step === 5) {
+      return true;
+    }
+    else if(step === 7) {
       return true;
     }
     return false;
