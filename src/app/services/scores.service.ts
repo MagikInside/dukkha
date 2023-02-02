@@ -11,7 +11,7 @@ export class ScoresService {
   constructor(private readonly afs: AngularFirestore) { }
 
   getScores(): Observable<{name: string, score: number}[]> {
-    return this.afs.collection<State>('states').valueChanges().pipe(
+    return this.afs.collection<State>('states', ref => ref.orderBy('score', 'desc')).valueChanges().pipe(
       map(states => states.map( state => {
         return { name: state.user?.name ?? '', score: state.score };
     })

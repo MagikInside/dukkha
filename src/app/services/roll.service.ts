@@ -8,9 +8,10 @@ import { Stance } from '../models/stance.model';
 })
 export class RollService {
 
-  roll(character: Character): number {
+  roll(character: Character, destiny?: boolean): number {
     if(character.status.condition !== Condition.Dead) {
-      return character.attack - this.rollDice() + this.stanceMod(character) + this.statusMod(character);
+      const destinyBonus = destiny ? 10 : 0;
+      return character.attack - this.rollDice() + this.stanceMod(character) + this.statusMod(character) + destinyBonus;
     } else {
       return -1;
     }

@@ -90,6 +90,8 @@ getDecisionsScore(answersResults: AnswersResults): number {
   score -= answersResults.factionLead === "Zhentarim" ? 2 : 0;
   score -= answersResults.vanguardFaction === "Zhentarim" ? 1 : 0;
 
+  score -= answersResults.factionLead === answersResults.vanguardFaction ? 2 : 0;
+
   score += answersResults.fallenDistrict === 'Temple district' ? 2 : 0;
   score += answersResults.fallenDistrict === 'Noble district' ? 1 : 0;
 

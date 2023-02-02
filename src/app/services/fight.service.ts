@@ -1,3 +1,4 @@
+import { parseHostBindings } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Character } from '../models/character.model';
 import { Condition } from '../models/condition.enum';
@@ -91,11 +92,16 @@ export class FightService {
   }
   
   fightPair(pair: Pair): number {
-    const heroesResults = pair.heroes.map(heroe => this.rollService.roll(heroe));
+    const destiny = this.isDestiny(pair);
+    const heroesResults = pair.heroes.map(heroe => this.rollService.roll(heroe, destiny));
     const monstersResults = pair.monsters.map(monster => this.rollService.roll(monster));
     const heroesTotalResult = Math.max(...heroesResults) + this.extraCombatantsBonus(heroesResults);
     const monstersTotalResult = Math.max(...monstersResults) + this.extraCombatantsBonus(monstersResults);
     return heroesTotalResult - monstersTotalResult;
+  }
+
+  isDestiny(pair: Pair): boolean {
+    return pair.heroes.some(heroe => heroe.name === 'Kurt') && pair.heroes.some(heroe => heroe.name === 'Sorniel') && pair.monsters.some(monster => monster.name = "Leshy");
   }
   
   extraCombatantsBonus(results: number[]): number {
