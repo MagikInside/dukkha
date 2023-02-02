@@ -1,3 +1,4 @@
+import { AnswersResults } from "./answers-results.model";
 import { Answers } from "./answers.model";
 import { RoundInfo } from "./round-info.model";
 import { Status } from "./status.model";
@@ -14,4 +15,5 @@ export interface State {
     roundInfo: RoundInfo,
     fightVictory: boolean | null;
     score: number;
+    answersResults: AnswersResults | null;
 }

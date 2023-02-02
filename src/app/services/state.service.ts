@@ -2,6 +2,7 @@ import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, distinctUntilChanged, filter, map, of, OperatorFunction, switchMap, tap } from "rxjs";
+import { AnswersResults } from "../models/answers-results.model";
 import { Answers } from "../models/answers.model";
 import { Character } from "../models/character.model";
 import { Condition } from "../models/condition.enum";
@@ -28,7 +29,8 @@ export class StateService {
     availablePoints: 12,
     roundInfo : initalRoundInfo,
     fightVictory: null,
-    score: 0
+    score: 0,
+    answersResults: null,
   });
   public state$ = this.store.asObservable();
   
@@ -39,7 +41,7 @@ export class StateService {
   public fightVictory$ = this.state$.pipe(map(state => state.fightVictory), distinctUntilChanged());
   public availablePoints$ = this.state$.pipe(map(state => state.availablePoints), distinctUntilChanged());
   public score$ = this.state$.pipe(map(state => state.score), distinctUntilChanged());
-  
+  public answersResults$ = this.state$.pipe(map(state => state.answersResults), distinctUntilChanged());
   
   constructor(private readonly afs: AngularFirestore, private userService: UserService) {
     this.userService.user$.pipe(
@@ -48,7 +50,16 @@ export class StateService {
           return this.afs.doc<State>('states/' + user.uid).valueChanges().pipe(
             tap(state => {
               if (!state) {
-                this.afs.collection<State>('states').doc(user.uid).set({ user: {name: user.displayName, uid: user.uid}, step: 0, answers: [], scrollUp: false,  selectedHeroesStatus: [], monstersStatus: [], availablePoints: 12, roundInfo : initalRoundInfo, fightVictory: null, score: 0 });
+                this.afs.collection<State>('states').doc(user.uid).set(
+                  { user: {name: user.displayName, uid: user.uid},
+                  step: 0, answers: [],
+                  scrollUp: false,
+                  selectedHeroesStatus: [],
+                  monstersStatus: [],
+                  availablePoints: 12,
+                  roundInfo : initalRoundInfo,
+                  fightVictory: null,
+                  score: 0,answersResults: null, });
               }
             }));
           } else {
@@ -127,8 +138,8 @@ export class StateService {
         this.afs.collection<State>('states').doc(this.userService.user?.uid).update({  fightVictory: isVictory, step: 7, scrollUp: true }); 
       }
 
-      setScore(score: number) {
-        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({  score }); 
+      setResults(score: number, answersResults: AnswersResults) {
+        this.afs.collection<State>('states').doc(this.userService.user?.uid).update({  score, answersResults }); 
       }
 
       changeHeroesOrder(event: CdkDragDrop<Character[]>){
