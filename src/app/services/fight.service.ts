@@ -45,9 +45,6 @@ export class FightService {
 
     const woundsRound = newHeroesStatus.reduce((acc, status) => acc + (status?.wounds ?? 0), 0) - woundsBefore;
     const impactsRound = newMonstersStatus.reduce((acc, status) => acc +  (status?.wounds ?? 0), 0) - impactsBefore;
-    console.log('RESULTS', results);
-    console.log('WOUNDS', woundsRound, 'IMPACTS', impactsRound)
-
     this.stateService.updateRound(impactsRound, woundsRound, newHeroesStatus, newMonstersStatus);
   }
 
