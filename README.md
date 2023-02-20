@@ -33,7 +33,7 @@ As in a normal Angular CLI project this are the most common commands:
  - Serve
 
     ```
-    Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+    Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
     ```
 
 - Build
@@ -43,5 +43,5 @@ As in a normal Angular CLI project this are the most common commands:
 
 - Test
     ```
-    Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    Run `ng test` to execute the unit tests via Karma.
     ```
