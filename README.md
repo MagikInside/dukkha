@@ -1,27 +1,47 @@
 # Dukkha
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.6.
+Small "choose your own adventure" style app, selecting options in this dark fantasy world to reach a final score depending on your decisions. A [DEMO](https://dukkha-e7d89.web.app/) is deployed on Firebase so  it can be played online.
 
-## Development server
+![dukkha](src/assets/imgs/dukkha.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+This application has been developed partially as a front-end development demonstrator and has the following features:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+ - Authentication and authorization in the access of private routes
+ - Real-time persistence of all user interactions
+ - Centralized state and unidirectional data flow
+ - Non trivial domain logic
+ - Cohesive user interfaces and colors
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Tools
 
-## Running unit tests
+For the development of this application these tools have been used:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Angular as FE framework.
+- Firebase for authentication, hosting and Cloud Firestore as database.
+- Angular material as component library and Material Design icons.
+- Jasmine/Karma for unit tests.
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+## Commands
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+As in a normal Angular CLI project this are the most common commands:
+
+ - Serve
+
+    ```
+    Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+    ```
+
+- Build
+    ```
+    Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    ```
+
+- Test
+    ```
+    Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    ```

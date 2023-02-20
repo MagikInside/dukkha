@@ -46,22 +46,22 @@ export class ConclusionService {
     switch(answers[0]) {
       case 0: {
         answersResults.color = 'blue';
-        answersResults.plus = answers[1] === 0;
+        answersResults.plus = answers[1] === 3;
         break;
       }
       case 1: {
         answersResults.color = 'white';
-        answersResults.plus = answers[1] === 1;
+        answersResults.plus = answers[1] === 2;
         break;
       } 
       case 2: {
         answersResults.color = 'red';
-        answersResults.plus = answers[1] === 2;
+        answersResults.plus = answers[1] === 1;
         break;
       } 
       case 3: {
         answersResults.color = 'black';
-        answersResults.plus = answers[1] === 3;
+        answersResults.plus = answers[1] === 0;
         break;
       }
       default: {}
