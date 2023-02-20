@@ -23,7 +23,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { PrologComponent } from './intro/prolog/prolog.component';
 import { LastNightComponent } from './intro/last-night/last-night.component';
-import { DescriptionComponent } from './shared/description/description.component';
+import { DescriptionComponent } from './intro/description/description.component';
 import { QuestionComponent } from './intro/question/question.component';
 import { SelectedHeroeComponent } from './selection/selected-hero/selected-hero.component';
 import { FightComponent } from './fight/fight.component';

@@ -2,11 +2,11 @@
     <section class="answers-results" *ngIf="answersResults$ | async as answersResults">
         <img src="assets/imgs/city-fire.jpg">
         <p>The city of Phandel burns to the ground, as dark creatures flood it, destroying everything in their path. Screams, blood and death take over the city, on this last night, while high up, in the dark starry sky, a red star shines intensely.</p>
-        <p>But not all is lost, cause on this darkest night of Phandel, a wizard rose in the city to protect it, you, <strong>{{(user$ | async)?.name}}</strong> and with his <strong *ngIf="answersResults.plus">mighty powerful</strong> <strong>{{answersResults.color}} magic</strong>  he kept the monsters at bay long enough to <strong>{{answersResults.strategy}}</strong> the city.</p>
+        <p>But not all is lost, cause on this darkest night of Phandel, a wizard rose in the city to protect it, you, <strong>{{(user$ | async)?.name}}</strong> and with your <strong *ngIf="answersResults.plus">mighty powerful</strong> <strong>{{answersResults.color}} magic</strong> kept the monsters at bay long enough to <strong>{{answersResults.strategy}}</strong> the city.</p>
         
         <p *ngIf="answersResults.factionLead === answersResults.vanguardFaction; else noSameFaction">Both the lead of all the factions and the vanguard offensive where assigned to the <strong>{{answersResults.factionLead}}</strong>. Its troops fought bravely and hard... but it was too much for any one faction and <strong>they were all but wiped out</strong> by the monstrous creatures.</p>
         <ng-template #noSameFaction>
-            <p *ngIf="answersResults.factionLead === 'Harpers'"><strong>The Harpers</strong>, using their knowledge of the city, with all its secrets, including hidden passages, manage to <strong>>give you an advantage</strong>.</p>
+            <p *ngIf="answersResults.factionLead === 'Harpers'"><strong>The Harpers</strong>, using their knowledge of the city, with all its secrets, including hidden passages, manage to <strong> give you an advantage</strong>.</p>
             <p *ngIf="answersResults.factionLead !== 'Harpers' && answersResults.factionLead !== 'Zhentarim'"><strong>{{answersResults.factionLead}}</strong> lead the various factions to the best of their ability, but the invasion is simply too much to contained.</p>
             <p *ngIf="answersResults.vanguardFaction === 'Lord\'s alliance'">The brave knights of the <strong>Lord's alliance</strong>  charge in the vanguard, <strong>inflicting heavy casualties</strong>  among the invading creatures.</p>
             <p *ngIf="answersResults.vanguardFaction !== 'Lord\'s alliance' && answersResults.vanguardFaction !== 'Zhentarim'"><strong>{{answersResults.vanguardFaction}}</strong> fight the invading creatures from the vanguard, harassing their lines, but were overwhelmed by their sheer numbers and ferocity..</p>
@@ -15,11 +15,11 @@
             </p>
         </ng-template>
         
-        <p *ngIf="(fightVictory$ | async) === true ">And thanks to a small group of elite troops selected by you, you manage to hold out in the city hall <strong>defeating a dangerous group of monsters victoriously</strong> and gaining a few more valuable moments, which save hundreds of your fellow citizens.</p>
+        <p *ngIf="(fightVictory$ | async) === true ">And thanks to a small group of elite troops selected by you, you managed to hold out in the city hall <strong>defeating a dangerous group of monsters victoriously</strong> and gaining a few more valuable moments, which save hundreds of your fellow citizens.</p>
         <p *ngIf="(fightVictory$ | async) ===false ">
             You fight alongside a small group of elite troops selected by you, facing terrible creatures, but there are just too many, and <strong>you have to retreat defeated... this time..</strong></p>
             <br>
-            <p>This is the <strong>last night of Phandel</strong>, but just you first one <strong>fighting the shadow</strong> that spreads around the world.</p>
+            <p>This is the <strong>last night of Phandel</strong>, but just your first one <strong>fighting the shadow</strong> that spreads around the world.</p>
             <br>
             <section class="poem">           
                 <p><strong>Armageddon</strong> is here.</p>

@@ -9,11 +9,12 @@ export const HEROES_MOCK: Character[] = [
         "id": "5JLUM1zMmTHTkNuXk2jH",
         "defense": 5,
         "points": 2,
+        "health": 6,
         "name": "Ben",
         "status": {
             "id": "5JLUM1zMmTHTkNuXk2jH",
             "stance": "Deffensive",
-            "results": [],
+            "wounds": 0,
             "condition": Condition.Ok
         }
     },
@@ -23,12 +24,13 @@ export const HEROES_MOCK: Character[] = [
         "defense": 4,
         "id": "XFrCztw0JTdJWFpQMR3q",
         "attack": 9,
+        "health": 5,
         "alliance": "Zhentarim",
         "img": "bror.png",
         "status": {
             "id": "XFrCztw0JTdJWFpQMR3q",
             "stance": "Deffensive",
-            "results": [],
+            "wounds": 0,
             "condition": Condition.Ok
         }
     },
@@ -38,11 +40,12 @@ export const HEROES_MOCK: Character[] = [
         "name": "Aziz",
         "alliance": "Lord's alliance",
         "attack": 11,
+        "health": 4,
         "id": "eBDPnK5xTbze17LPW6gn",
         "img": "aziz.png",
         "status": {
             "stance": "Offensive",
-            "results": [],
+            "wounds": 0,
             "condition": Condition.Ok,
             "id": "eBDPnK5xTbze17LPW6gn"
         }
